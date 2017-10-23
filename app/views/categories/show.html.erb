@@ -5,6 +5,6 @@
 
 <% @category.products.each do |product| %>
   <ul>
-    <li><%= (link_to product.name,product_path(product.id)) %></li>
+    <li><%= (link_to product.name, product_path(product.id)) %></li>
   </ul>
 <% end %>
