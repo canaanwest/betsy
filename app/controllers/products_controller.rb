@@ -1,28 +1,41 @@
 class ProductsController < ApplicationController
   before_action :find_product, except: [:index, :new, :create]
+  before_action :permission, except: [:show, :index]
+  before_action :owns, only: [:edit, :update]
+
   def index
     @products = Product.show_available
   end
 
   def show
-    @user = @product.user
-    @entry = OrderProduct.new
-    unless @product
-      render :not_found
+    if @product
+      @user = @product.user
+      @entry = OrderProduct.new
+    else
+      render render_404
     end
   end
 
   def edit
+    if @product.id.nil?
+      render render_404
+    end
   end
 
   def update
+    unless @product
+      render render_404
+    end
+
     @product.update_attributes product_params
     if @product.save
       flash[:status] = :success
       flash[:result_text] = "Successfully updated #{@product.name}"
+      redirect_to profile_path(@user)
     else
       flash[:status] = :failure
       flash[:result_text] = "Could not update #{@product.name}"
+      flash.now[:messages] = @product.errors.message
       render :edit, status: :not_found
     end
   end
@@ -39,19 +52,13 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:status] = :success
       flash[:result_text] = "Successfully created product #{@product.id} #{@product.name}"
+      redirect_to profile_path(@user)
     else
       flash[:status] = :failure
       flash[:result_text] = "Unable to create a product"
       flash[:messages] = @product.errors.messages
       render :new, status: :bad_request
     end
-  end
-
-  def destroy
-    @product.destroy
-    flash[:status] = :success
-    flash[:result_text] = "Successfully destroyed product #{@product.id}, #{@product.name}"
-    redirect_to root_path
   end
 
   def add_to_order
@@ -75,17 +82,15 @@ class ProductsController < ApplicationController
     end
   end
 
-
-
-  private
-
   def change_visibility
     if @product.visibility == false
       @product.visibility = true
       @product.save
       flash[:result_text] = "Your product is now visible in browsing"
       redirect_back(fallback_location: products_path)
+
     else
+      # binding.pry
       @product.visibility = false
       @product.save
       flash[:result_text] = "Your product is no longer visibile in browsing"
@@ -93,8 +98,8 @@ class ProductsController < ApplicationController
     end
   end
 
+  private
 
-private
   def product_params
     params.require(:product).permit(:name, :description, :user_id, :price, category_ids:[])
   end
@@ -105,8 +110,22 @@ private
   end
 
   def find_product
-    @product = Product.find(params[:id].to_i)
+    @product = Product.find_by(id: params[:id].to_i)
   end
+
+
+  def permission
+    unless @user
+      render render_404
+    end
+  end
+
+  def owns
+    unless @product && @user.id == @product.user_id
+      render render_404
+    end
+  end
+
 
   def create_entry(input_quantity)
     entry = OrderProduct.new
@@ -116,6 +135,4 @@ private
     return entry
   end
 
-
-
-  end
+end
