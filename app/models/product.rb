@@ -12,7 +12,6 @@ class Product < ApplicationRecord
   validates :price, numericality: true
   validates :visibility, inclusion: {in: [true,false]}
 
-
   def num_available
     available = available_items
     if available
@@ -31,8 +30,9 @@ class Product < ApplicationRecord
     return false
   end
 
-
   def self.show_available
     Product.where(visibility: true)
   end
+
+
 end

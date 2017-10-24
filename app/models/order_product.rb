@@ -12,8 +12,9 @@ class OrderProduct < ApplicationRecord
     if product.num_available >= quantity
       return true
     else
-      return false
+      self.errors[:quantity] << "is invalid. There are currently only #{product.num_available} of #{product.name}. Please update your order."
     end
+    return false
   end
 
   def price_change?
