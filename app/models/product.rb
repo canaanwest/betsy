@@ -10,6 +10,8 @@ class Product < ApplicationRecord
   validates :price, presence: true
   # validates :category_id, presence: true
   validates :price, numericality: true
+  validates :visibility, inclusion: {in: [true,false]}
+
 
   def num_available
     available = available_items
@@ -27,5 +29,10 @@ class Product < ApplicationRecord
     end
     return available if available.first != nil
     return false
+  end
+
+
+  def self.show_available
+    Product.where(visibility: true)
   end
 end
