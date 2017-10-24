@@ -16,6 +16,8 @@
 
  */
 
+ //used color pallete from thsi site: http://frame.bloglovin.com/?post=4796519183&blog=13978127&group=0&frame=1&frame_type=none&avpp=true&context=&context_ids=&feed_order=&click=0&user=0
+
 body, h1, h2, h3, h4, h5, footer {
   font-family: 'Slabo 27px', serif;
 }
@@ -26,19 +28,15 @@ body, h1, h2, h3, h4, h5, footer {
 //   padding-top: 4px;
 // }
 
-footer {
-  padding-top: 1em;
-  display: flex;
-  justify-content: center;
-}
+
 
 //Nav--------------------------------------
 nav {
-  background: #8c4511;
+  background: #576b4e;
   width: 100%;
   height: 40px;
   text-transform: uppercase;
-  font-size: 0.7em;
+  font-size: 1em;
   letter-spacing: 0.1em;
 }
 
@@ -65,23 +63,26 @@ nav li a {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
-  color: #e7e8a6;
-  border-bottom: 1px solid white;
-}
-
-#Login-Logout {
-  // display: inline-block;
-  // float: left;
+  //offwhite text
+  color: #e2e6e4;
+  // border: 1px solid black;
 }
 
 .companyname {
-  color: #e2e6e4;
+  // padding-right: 25px;
+}
+
+.products-users {
+  display: inline-block;
+  // float: right;
 }
 
 /*Dropdown*/
 .menu_item a:hover{
-  background: #8c4511;
-  color: #e2e6e4;
+  //bright green color: #8c9c09
+  background: #8c9c09;
+  //charcoal text: #232e27
+  color: #232e27;
 }
 
 nav li:hover ul a {
@@ -131,6 +132,54 @@ input[type="checkbox"]:checked ~ #menu {
   display: block;
 }
 
+//Second Row--------------------------------------
+.menu_item:hover{
+  background: #8c4511;
+}
+
+nav li:hover ul a {
+  height: 40px;
+  line-height: 40px;
+}
+
+// .second-row-list ul li {
+//   display: inline-block;
+//   float: none;
+// }
+//
+.second-row {
+  display: block;
+  width: 100%;
+  //light blue #8db4c6
+  background: #8db4c6;
+  // height: 40px;
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  color: black;
+}
+//
+// .second-row-list {
+//   display: block;
+//   margin: 0;
+// }
+//
+// .loggedout, .loggedin {
+//   width: 20%;
+//   display: inline;
+// }
+//
+// .second-row-list li {
+//   margin: 10;
+//   width: 20%;
+// }
+//
+// .loggedin {
+//   margin: 0;
+//   width: 20%;
+//   display: inline;
+// }
+
 //Header--------------------------------------
 header {
   text-align: center;
@@ -141,5 +190,7 @@ header {
 
 //Footer--------------------------------------
 footer {
-
+  padding-top: 1em;
+  display: flex;
+  justify-content: center;
 }
