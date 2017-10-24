@@ -19,9 +19,14 @@
   <ul>
     <li>
         <%= form_tag do %>
-        <%= label_tag(:quantity, "Quantity") %>
-        <%= text_field_tag(:quantity) %>
+        <div class="row">
+          <%= label_tag(:quantity, "Quantity", class: "bogus small-1 columns") %>
+          <%= text_field_tag(:quantity, nil, class: "small-3 columns", placeholder: "Enter number") %>
+      </div>
+      <div class="large-12 columns">
+
         <%= submit_tag("Add to Cart")%>
+      </div>
       <% end %>
     </li>
   </ul>
