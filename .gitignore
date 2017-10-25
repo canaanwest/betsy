@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 .env
+/coverage
 
 # Ignore bundler config.
 /.bundle
@@ -19,5 +20,3 @@
 /yarn-error.log
 
 .byebug_history
-
-.env
