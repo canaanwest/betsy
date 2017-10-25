@@ -92,13 +92,13 @@ class UsersController < ApplicationController
   end
 
   def organize_entries
-    @paid_entries = []
-    @shipped_entries = []
-    @canceled_entries = []
-    @entries.each do |entry|
-      @paid_entries << entry if entry.paid?
-      @shipped_entries << entry if entry.shipped?
-      @canceled_entries << entry if entry.canceled?
-    end
+    @paid_entries = @user.paid_entries
+    @shipped_entries = @user.shipped_entries
+    @canceled_entries = @user.canceled_entries
+    # @entries.each do |entry|
+    #   @paid_entries << entry if entry.paid?
+    #   @shipped_entries << entry if entry.shipped?
+    #   @canceled_entries << entry if entry.canceled?
+    # end
   end
 end
