@@ -9,31 +9,31 @@
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
+<body>
 
-  <header>
-    <div class="container">
+
       <nav>
         <label for="show-menu" class="show-menu">Menu</label>
         <input type="checkbox" id="show-menu" role="button">
         <ul id="menu">
-          <li class="companyname">
+          <li>
             <h1 ><%= link_to "NorthWesty", root_path %></h1>
           </li>
-          <li class="menu_item">
-            <%= link_to "Products", products_path %>
+          <li>
+            <%= link_to "Shop", products_path %>
             <ul class="hidden">
-              <li class="menu_item"><%= link_to "Browse All Products", products_path%></li>
-              <li class="menu_item"><%= link_to "Browse By Category", categories_path%></li>
-              <li class="menu_item"><%= link_to "Browse by Merchant", users_path%></li>
+              <li><%= link_to "All Products", products_path%></li>
+              <li><%= link_to "Shop By Category", categories_path%></li>
+              <li><%= link_to "Shop by Vendor", users_path%></li>
             </ul>
           </li>
-          <li class="menu_item">
-            <%= link_to "Users", users_path %>
+          <li>
+            <%= link_to "Vendors", users_path %>
             <ul class="hidden">
-              <li class="menu_item"><%= link_to "Users", users_path%></li>
+              <li><%= link_to "Vendors", users_path%></li>
             </ul>
           </li>
-          <li class="menu_item" id="Login-Logout">
+          <li>
             <% if session[:user_id]%>
               <% @user = session[:user_id]%>
               <%= link_to "Your Profile", profile_path(@user), class:"button" %>
@@ -48,7 +48,11 @@
 
         </ul>
       </nav>
-  </header>
+
+
+
+
+<!-- ---------------------------------------- -->
 
   <section class="flash">
     <% flash.each do |name, message| %>
