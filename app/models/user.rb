@@ -23,8 +23,11 @@ class User < ApplicationRecord
   def find_pending_order #synonymous to cart
     pending_orders = []
     self.orders.each do |order|
-      pending_orders << order if order.order_status == "pending"
+      if order.order_status == "pending"
+        pending_orders << order
+      end
     end
+
     if pending_orders.length > 1
       # some logic about combining the contents of the orders
     elsif pending_orders.length == 1
