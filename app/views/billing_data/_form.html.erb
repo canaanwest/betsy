@@ -21,7 +21,10 @@
 <%= f.text_field  :credit_card_cvv%>
 
 <%= f.label :billing_zip_code%>
-<%= f.text_field  :billing_zip_code%>
+<%= f.text_field :billing_zip_code%>
+
+<%= f.label :expiration_date %>
+<%= f.text_field :expiration_date %>
 
 <%= f.submit "Submit Payment Information" %>
 <%end%>
