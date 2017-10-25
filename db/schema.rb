@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025185951) do
+ActiveRecord::Schema.define(version: 20171025212948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20171025185951) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.boolean "visibility", default: true
+    t.string "product_photo", default: "http://fillmurray.com/g/300/300"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
