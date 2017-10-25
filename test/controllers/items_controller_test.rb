@@ -33,8 +33,6 @@ describe ItemsController do
     end
   end
 
-
-<<<<<<< HEAD
   # TODO
   describe "Create" do
     it "Should be able to create a new item" do
