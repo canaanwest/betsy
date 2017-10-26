@@ -37,6 +37,7 @@ class BillingDataController < ApplicationController
 
   def create
     @billing_data = BillingDatum.new billing_data_params
+    @billing_data.user = @user
     if @billing_data.save
       flash[:result_text] = "Does this look right?"
       redirect_to billing_datum_path(@billing_data.id)
@@ -47,7 +48,7 @@ class BillingDataController < ApplicationController
     end
   end
 
-private
+  private
   def find_billing
     @billing_data = BillingDatum.find_by(id: params[:id].to_i)
   end
@@ -69,8 +70,9 @@ private
   end
 
   def permission
-    unless session[:user_id] == @billing_data.user_id
+    unless session[:user_id] == @billing_data.user_id || @pending_order.billing_datum_id == @billing_data.id
       render render_404
     end
   end
+
 end
