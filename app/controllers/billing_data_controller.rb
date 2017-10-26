@@ -25,7 +25,7 @@ class BillingDataController < ApplicationController
       @billing_data.save
       redirect_to billing_datum_path(@billing_data.id)
     else
-      flash[:result_text] = "didn't save"
+      flash[:result_text] = "Didn't save. Make sure your fields are complete!"
       render :edit
     end
   end
