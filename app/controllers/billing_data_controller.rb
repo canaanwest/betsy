@@ -25,6 +25,7 @@ class BillingDataController < ApplicationController
     if @billing_data.update_attributes billing_data_params
       redirect_to billing_datum_path(@billing_data.id)
     else
+      flash[:result_text] = "didn't save"
       render :edit
     end
   end
@@ -70,7 +71,7 @@ class BillingDataController < ApplicationController
   end
 
   def billing_data_params
-    return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code)
+    return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date)
   end
 end
 
