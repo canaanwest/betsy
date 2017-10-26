@@ -1,8 +1,8 @@
 class BillingDataController < ApplicationController
 
-  # def index
-  #   @billing_data = Billing_data.order(:id)
-  # end
+  def index
+    render render_404
+  end
 
   def show
     @billing_data = BillingDatum.find_by(id: params[:id].to_i)
@@ -23,6 +23,7 @@ class BillingDataController < ApplicationController
   def update
     @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     if @billing_data.update_attributes billing_data_params
+      @billing_data.save
       redirect_to billing_datum_path(@billing_data.id)
     else
       flash[:result_text] = "didn't save"
@@ -49,14 +50,6 @@ class BillingDataController < ApplicationController
     end
   end
 
-
-  def destroy
-    @billing_data = BillingDatum.find(params[id].to_i)
-    @billing_data.destroy
-    redirect_to root_path
-  end
-
-
   private
   def save_billing(id)
     @user = session[:user_id]
@@ -74,8 +67,3 @@ class BillingDataController < ApplicationController
     return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date)
   end
 end
-
-
-
-
-#
