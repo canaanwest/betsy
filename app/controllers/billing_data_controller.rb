@@ -1,11 +1,11 @@
 class BillingDataController < ApplicationController
-
+  before_action :find_billing, only: [:edit, :update, :show]
+  before_action :permission, only: [:edit, :update, :show]
   def index
     render render_404
   end
 
   def show
-    @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     unless @billing_data
       flash[:error] = "Billing data not found"
       redirect_to root_path
@@ -48,6 +48,10 @@ class BillingDataController < ApplicationController
   end
 
 private
+  def find_billing
+    @billing_data = BillingDatum.find_by(id: params[:id].to_i)
+  end
+
   def save_billing(id)
     @user = session[:user_id]
     if @user
@@ -62,5 +66,11 @@ private
 
   def billing_data_params
     return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date)
+  end
+
+  def permission
+    unless session[:user_id] == @billing_data.user_id
+      render render_404
+    end
   end
 end
