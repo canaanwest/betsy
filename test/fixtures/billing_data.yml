@@ -7,7 +7,8 @@ carl_billing_datum:
   credit_card_number: 2423 2211 3231 2121
   credit_card_cvv: 344
   billing_zip_code: 98112
-  user_id: mia
+  expiration_date: 1111
+  user_id: carl
 
 mia_billing_datum:
   email: mia@mommamia.com
@@ -16,7 +17,8 @@ mia_billing_datum:
   credit_card_number: 2392 2932 1010 2020
   credit_card_cvv: 232
   billing_zip_code: 02020
-  user_id: carl
+  expiration_date: 1111
+  user_id: mia
 
 guest_billing_datum:
   email: star@lightbright.com
@@ -25,4 +27,5 @@ guest_billing_datum:
   credit_card_number: 2392 2932 1010 2020
   credit_card_cvv: 232
   billing_zip_code: 02020
+  expiration_date: 1111
   user_id:
