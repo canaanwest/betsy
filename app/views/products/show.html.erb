@@ -8,6 +8,9 @@
 
   <ul>
     <li>
+      <%=image_tag(@product.product_photo)%>
+    </li>
+    <li>
       <strong>Price:</strong> $<%= @product.price %>
     </li>
     <li>
@@ -35,7 +38,7 @@
 <section class="reviews">
   <h4>What People are Saying!</h4>
 
-  
+
 <% if @current_user_is_not_product_owner %>
   <h3><%= link_to "Leave a Review!", new_new_review_path(@product) %></h3>
 <% end %>
