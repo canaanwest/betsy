@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       session[:pending_order_id] = @pending_order.id if @pending_order
       if !(@pending_order) #make them one if they don't have
         # @pending_order = Order.find_by(session_id: session[:session_id])
-        @pending_order = Order.new(session_id: session[:id])
+        @pending_order = Order.new(session_id: session[:session_id])
         @pending_order.user_id = @user.id
         @pending_order.save
         session[:pending_order_id] = @pending_order.id
