@@ -8,47 +8,55 @@
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Inconsolata" rel="stylesheet">
+
   </head>
 
-  <header>
-    <div class="container">
-      <nav>
-        <label for="show-menu" class="show-menu">Menu</label>
-        <input type="checkbox" id="show-menu" role="button">
-        <ul id="menu">
-          <li class="companyname">
-            <h1 ><%= link_to "NorthWesty", root_path %></h1>
-          </li>
-          <li class="menu_item">
-            <%= link_to "Products", products_path %>
-            <ul class="hidden">
-              <li class="menu_item"><%= link_to "Browse All Products", products_path%></li>
-              <li class="menu_item"><%= link_to "Browse By Category", categories_path%></li>
-              <li class="menu_item"><%= link_to "Browse by Merchant", users_path%></li>
-            </ul>
-          </li>
-          <li class="menu_item">
-            <%= link_to "Users", users_path %>
-            <ul class="hidden">
-              <li class="menu_item"><%= link_to "Users", users_path%></li>
-            </ul>
-          </li>
-          <li class="menu_item" id="Login-Logout">
-            <% if session[:user_id]%>
-              <% @user = session[:user_id]%>
-              <%= link_to "Your Profile", profile_path(@user), class:"button" %>
-              <%= link_to "Log out", logout_path, class:"button float-right" %>
-            <%else%>
-              <%= link_to "Login/SignUp with Github", "/auth/github", class:"button float-right"%>
-            <%end%>
-          </li>
-          <li>
-            <%= link_to "Cart", cart_path, class:"button" %>
-          </li>
+<body>
+  <nav>
+    <div class = "left"><%= link_to "NorthWesty", root_path %></div>
 
-        </ul>
-      </nav>
-  </header>
+    <div class ="right">
+      <ul>
+        <li>
+          <%= link_to "Shop", products_path %>
+          <ul class="hidden">
+            <li><%= link_to "All Products", products_path%></li>
+            <li><%= link_to "Shop By Category", categories_path%></li>
+            <li><%= link_to "Shop by Vendor", users_path%></li>
+          </ul>
+        </li>
+
+
+        <li>
+          <%= link_to "Cart", cart_path, class:"button" %>
+        </li>
+
+
+        <li>
+          <% if session[:user_id]%>
+            <% @user = session[:user_id]%>
+            <%= link_to "Your Profile", profile_path(@user), class:"button" %>
+            <%= link_to "Log out", logout_path, class:"button float-right" %>
+          <%else%>
+            <%= link_to "Login/SignUp with Github", "/auth/github", class:"button float-right"%>
+          <%end%>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- ---------------------------------------- -->
+
+<!-- <li>
+  <%# link_to "Vendors", users_path %>
+  <ul class#"hidden">
+    <li><%# link_to "Vendors", users_path%></li>
+  </ul>
+</li> -->
+
+<!-- ---------------------------------------- -->
 
   <section class="flash">
     <% flash.each do |name, message| %>
@@ -58,9 +66,9 @@
 
 <%= yield %>
 
-  <footer class="row small-12 large-12">
+  <!-- <footer class="row small-12 large-12">
     <p><em>Copyright M^GJ*C 2017</em></p>
-  </footer>
+  </footer> -->
 
   </body>
 </html>

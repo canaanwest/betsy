@@ -44,7 +44,7 @@ describe ItemsController do
         must_redirect_to root_path
 
     end
-  end 
+  end
 
   describe "Create" do
     it "Should be able to create a new item" do
@@ -71,9 +71,4 @@ describe ItemsController do
           must_redirect_to root_path
     end
   end
-
-# ---------------------------------
-
-
-
 end

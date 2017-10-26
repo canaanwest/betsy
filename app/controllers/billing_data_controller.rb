@@ -1,11 +1,11 @@
 class BillingDataController < ApplicationController
-
-  # def index
-  #   @billing_data = Billing_data.order(:id)
-  # end
+  before_action :find_billing, only: [:edit, :update, :show]
+  before_action :permission, only: [:edit, :update, :show]
+  def index
+    render render_404
+  end
 
   def show
-    @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     unless @billing_data
       flash[:error] = "Billing data not found"
       redirect_to root_path
@@ -19,23 +19,21 @@ class BillingDataController < ApplicationController
     end
   end
 
-
   def update
     @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     if @billing_data.update_attributes billing_data_params
+      @billing_data.save
       redirect_to billing_datum_path(@billing_data.id)
     else
-      flash[:result_text] = "didn't save"
+      flash[:result_text] = "Didn't save. Make sure your fields are complete!"
       render :edit
     end
   end
-
 
   def new
     @user = session[:user_id]
     @billing_data = BillingDatum.new
   end
-
 
   def create
     @billing_data = BillingDatum.new billing_data_params
@@ -49,15 +47,11 @@ class BillingDataController < ApplicationController
     end
   end
 
-
-  def destroy
-    @billing_data = BillingDatum.find(params[id].to_i)
-    @billing_data.destroy
-    redirect_to root_path
+private
+  def find_billing
+    @billing_data = BillingDatum.find_by(id: params[:id].to_i)
   end
 
-
-  private
   def save_billing(id)
     @user = session[:user_id]
     if @user
@@ -73,9 +67,10 @@ class BillingDataController < ApplicationController
   def billing_data_params
     return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date)
   end
+
+  def permission
+    unless session[:user_id] == @billing_data.user_id
+      render render_404
+    end
+  end
 end
-
-
-
-
-#
