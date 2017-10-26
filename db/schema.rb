@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023221926) do
+ActiveRecord::Schema.define(version: 20171025212948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171023221926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "expiration_date"
     t.index ["user_id"], name: "index_billing_data_on_user_id"
   end
 
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20171023221926) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.boolean "visibility", default: true
+    t.string "product_photo", default: "https://i.imgur.com/M8g4Cdu.jpg?1"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

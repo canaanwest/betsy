@@ -9,6 +9,7 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -17,6 +18,9 @@
 
 /node_modules
 /yarn-error.log
+/coverage
+
+/coverage
 
 .byebug_history
 

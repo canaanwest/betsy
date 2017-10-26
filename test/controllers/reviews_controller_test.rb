@@ -5,7 +5,7 @@ describe ReviewsController do
   describe "Guest (Unauthenticated)" do
     describe "NEW" do
       let(:product) { products(:converse) }
-      
+
       it "Should be able to get to the new review form" do
         get new_review_path(product)
         must_respond_with :success
@@ -23,7 +23,8 @@ describe ReviewsController do
       end
 
       it "GUESTS cannot leave a review on an unfound product" do
-        
+
       end
     end
   end
+end 

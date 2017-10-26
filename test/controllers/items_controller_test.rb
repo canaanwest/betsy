@@ -34,7 +34,6 @@ describe ItemsController do
   end
 
 
-<<<<<<< HEAD
   # TODO
   describe "Create" do
     it "Should be able to create a new item" do
@@ -43,7 +42,7 @@ describe ItemsController do
 
         must_respond_with :redirect
         must_redirect_to root_path
-=======
+
   describe "Create" do
     it "Should be able to create a new item" do
 
@@ -56,8 +55,6 @@ describe ItemsController do
       must_respond_with :redirect
       must_redirect_to root_path
 
-
->>>>>>> 3cfed66259465437ed4cd847fb98d29746334c09
     end
   end
 
