@@ -19,7 +19,6 @@ class BillingDataController < ApplicationController
     end
   end
 
-
   def update
     @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     if @billing_data.update_attributes billing_data_params
@@ -31,12 +30,10 @@ class BillingDataController < ApplicationController
     end
   end
 
-
   def new
     @user = session[:user_id]
     @billing_data = BillingDatum.new
   end
-
 
   def create
     @billing_data = BillingDatum.new billing_data_params
@@ -50,7 +47,7 @@ class BillingDataController < ApplicationController
     end
   end
 
-  private
+private
   def save_billing(id)
     @user = session[:user_id]
     if @user
