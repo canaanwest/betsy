@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20171025212948) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.boolean "visibility", default: true
-    t.string "product_photo", default: "https://i.imgur.com/M8g4Cdu.jpg"
+    t.string "product_photo", default: "https://i.imgur.com/M8g4Cdu.jpg?1"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
