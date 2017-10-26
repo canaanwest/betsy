@@ -24,6 +24,7 @@ class BillingDataController < ApplicationController
   def update
     if @billing_data.update_attributes billing_data_params
       redirect_to billing_datum_path(@billing_data.id)
+      @billing_data.user = @user
     else
       flash[:result_text] = "Didn't save. Make sure your fields are complete!"
       render :edit
@@ -38,6 +39,7 @@ class BillingDataController < ApplicationController
 
   def create
     @billing_data = BillingDatum.new billing_data_params
+    @billing_data.user = @user
     if @billing_data.save
       flash[:result_text] = "Does this look right?"
       redirect_to billing_datum_path(@billing_data.id)
@@ -66,7 +68,7 @@ private
   end
 
   def billing_data_params
-    return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date, :user_id)
+    return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date)
   end
 
   def permission
