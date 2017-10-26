@@ -1,6 +1,8 @@
 class BillingDataController < ApplicationController
-  before_action :find_billing, only: [:edit, :update, :show]
+  before_action :find_billing, only: [:permission, :edit, :update, :show]
   before_action :permission, only: [:edit, :update, :show]
+
+
   def index
     render render_404
   end
@@ -20,9 +22,7 @@ class BillingDataController < ApplicationController
   end
 
   def update
-    @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     if @billing_data.update_attributes billing_data_params
-      @billing_data.save
       redirect_to billing_datum_path(@billing_data.id)
     else
       flash[:result_text] = "Didn't save. Make sure your fields are complete!"
@@ -33,6 +33,7 @@ class BillingDataController < ApplicationController
   def new
     @user = session[:user_id]
     @billing_data = BillingDatum.new
+
   end
 
   def create
@@ -65,12 +66,12 @@ private
   end
 
   def billing_data_params
-    return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date)
+    return params.require(:billing_datum).permit(:email, :mailing_address, :credit_card_name, :credit_card_number, :credit_card_cvv, :billing_zip_code, :expiration_date, :user_id)
   end
 
   def permission
-    unless session[:user_id] == @billing_data.user_id
-      render render_404
+    unless session[:user_id] == @billing_data.user_id || @user.id == @billing_data.user_id
+        render render_404
     end
   end
 end
