@@ -1,3 +1,41 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// INDEX------------------------------------------
+section {
+  width: 90%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+article {
+  display: inline-block;
+  border: solid 1px;
+  border-radius: 25px;
+  width: 29%;
+  min-width: 25%;
+  height: 400px;
+  text-align: center;
+  margin: 2% 2% 2% %2%;
+}
+
+article img {
+  margin-top: 5%;
+  height: 200px;
+  width: 200px;
+}
+
+// SHOW------------------------------------------------
+
+.product-details {
+  border: solid 1px;
+  display: block;
+  width: 45%;
+  min-width: 40%;
+  // float: right;
+}
+
+.text {
+  width: 100 px;
+}

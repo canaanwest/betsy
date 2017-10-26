@@ -3,3 +3,39 @@
 <p>
   Your order has been completed! The status is: <%= @pending_order.order_status %>. Your products should ship shortly! Thanks for shopping at NorthWesty!
 </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Cart Subtotal</th>
+      <th>Shipment Status</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @cart.order_products.each do |entry| %>
+      <tr>
+        <td><%= link_to entry.product.name, product_path(entry.product.id)%></td>
+        <td><%= entry.quantity %></td>
+        <td> <%= entry.product.price%> </td>
+        <td> <%= @items_for_purchase.first.shipping_status %> </td>
+      </tr>
+      <% end %>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td><%= @cart.taxed_total%></td>
+        <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<!-- Each item in the order with a quantity and line-item subtotal
+A link to the item description page
+Order total price
+DateTime the order was placed
+The current status of the order -->

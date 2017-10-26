@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
       @pending_order = @user.find_pending_order
       session[:pending_order_id] = @pending_order.id if @pending_order
       if !(@pending_order) #make them one if they don't have
-        @pending_order = Order.find_by(session_id: session[:session_id])
+        # @pending_order = Order.find_by(session_id: session[:session_id])
+        @pending_order = Order.new(session_id: session[:id])
         @pending_order.user_id = @user.id
         @pending_order.save
         session[:pending_order_id] = @pending_order.id
@@ -56,6 +57,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def render_404
+  # DPR: supposedly this will actually render a 404 page in production
   raise ActionController::RoutingError.new('Not Found')
   end
 

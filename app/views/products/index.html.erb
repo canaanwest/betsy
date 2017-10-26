@@ -15,9 +15,13 @@
 
 <section class="products">
 <% @products.each do |product| %>
+
   <article class="product_details">
+    <li><%= link_to(image_tag("clothing_placeholder.png"), product_path(product.id)) %></li>
     <h3><%= link_to product.name, product_path(product.id) %></h3>
     <ul>
+      <li><strong>Price:</strong> $<%= product.price %></li>
+      <li>Number Available: <%= product.items.where(purchase_status:false).count %></li>
       <li>
         <strong>Price:</strong> $<%= product.price %>
       </li>
@@ -31,5 +35,6 @@
       </li>
     </ul>
   </article>
+
   <% end %>
 </section>

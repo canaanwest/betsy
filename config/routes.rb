@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
 
   resources :billing_data
+
   resources :products
 
   post 'products/visibility/:id', to: 'products#change_visibility', as: 'change_visibility'
