@@ -21,8 +21,6 @@ class Product < ApplicationRecord
     end
   end
 
-
-
   def available_items
     available = []
     self.items.each do |item|

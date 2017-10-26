@@ -28,6 +28,7 @@ class User < ApplicationRecord
       end
     end
 
+    #TODO- Question from Julia- Why would a user have multiple pending orders? If they sign in as a user and add to cart, and then logout and add some to a new cart, then sign back in?
     if pending_orders.length > 1
       # some logic about combining the contents of the orders
     elsif pending_orders.length == 1
@@ -37,17 +38,19 @@ class User < ApplicationRecord
     end
   end
 
-  def has_products
-    has_products = []
-    User.all.each do |user|
-      if user.products.length > 0
-        has_products.push(user)
-      end
-    end
-    return has_products
-  end
+  #TODO-Question from Julia- I think we can remove this method. It is not referenced anywhere in the project.
+  # def has_products
+  #   has_products = []
+  #   User.all.each do |user|
+  #     if user.products.length > 0
+  #       has_products.push(user)
+  #     end
+  #   end
+  #   return has_products
+  # end
 
-  def show_available
-    Product.where(visibility: true)
-  end
+  #TODO- Question from Julia- This method is shown in two places: here and in the application model. I think we can remove it here.
+  # def show_available
+  #   Product.where(visibility: true)
+  # end
 end

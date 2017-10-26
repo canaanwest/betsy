@@ -43,6 +43,9 @@ describe ItemsController do
         must_respond_with :redirect
         must_redirect_to root_path
 
+    end
+  end 
+
   describe "Create" do
     it "Should be able to create a new item" do
 
