@@ -38,7 +38,7 @@ body, h1, h2, h3, h4, h5, footer {
 
 //Nav--------------------------------------
 nav {
-  background: lightgray;
+  background: #5e2a2c;
   text-transform: uppercase;
   width: auto;
   height: 200px;
@@ -56,7 +56,6 @@ nav li {
 nav li {
   display: inline-block;
   float: left;
-  // color: yellow;
 }
 
 nav li a {
@@ -66,22 +65,18 @@ nav li a {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
-  color: green;
+  color:black;
 }
 
-#Login-Logout {
-  display: inline-block;
-  float: left;
-}
+// #Login-Logout {
+//   display: inline-block;
+//   float: left;
+// }
 
-.companyname {
-  color: #e2e6e4;
-}
 
 /*Dropdown*/
 .menu_item a:hover{
   background: #8c4511;
-  color: #e2e6e4;
 }
 
 nav li:hover ul a {
@@ -92,7 +87,7 @@ nav li:hover ul a {
 nav li ul li {
   display: block;
   float: none;
-  background: #141c11;
+  background: none;
 }
 
 //
@@ -128,11 +123,14 @@ input[type="checkbox"]:checked ~ #menu {
 
 
 .right {
-  // margin-top: 109.5px;
-  width: 50%;
   float: right;
-  margin-left: 10%;
-  margin-bottom: 500px;
+}
+
+.right ul li a:hover {
+  background-color: transparent;
+  color: black;
+  border: solid 1px;
+  border-radius: 15px;
 }
 
 .left {
@@ -149,4 +147,14 @@ input[type="checkbox"]:checked ~ #menu {
   text-align: center;
   margin-left: 2%;
   line-height: 1;
+  color:white;
+}
+
+.button {
+  color: black;
+  background: none;
+}
+
+.button:hover {
+  color: black;
 }
