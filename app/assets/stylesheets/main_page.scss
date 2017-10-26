@@ -2,19 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
-
-
-
-
-
-// .hero-container {
-//   width: 100%;
-//   margin: 0;
-//   padding: 0;
-//   background-image: url("/assets/images/Triad B.png");
-// }
+.background {
+  width: 100%;
+  height: calc(100vh - 200px);
+  background-image: url("/assets/purple.jpg");
+  background-repeat: no-repeat;
+ // overflow: hidden;
+}
 
 // .hero-section {
 //   background: url("https://i.imgur.com/oJuvTG5.jpg") 50% no-repeat;

@@ -19,7 +19,9 @@
  */
 
 body, h1, h2, h3, h4, h5, footer {
-  font-family: 'Slabo 27px', serif;
+  // font-family: 'Slabo 27px', serif;
+  font-family: 'Muli', sans-serif;
+
 }
 
 // .shopping-cart {
@@ -28,19 +30,19 @@ body, h1, h2, h3, h4, h5, footer {
 //   padding-top: 4px;
 // }
 
-footer {
-  padding-top: 1em;
-  display: flex;
-  justify-content: center;
-}
+// footer {
+//   padding-top: 1em;
+//   display: flex;
+//   justify-content: center;
+// }
 
 //Nav--------------------------------------
 nav {
-  background: #8c4511;
-  width: auto;
-  height: 60px;
+  background: lightgray;
   text-transform: uppercase;
-  font-size: 0.7em;
+  width: auto;
+  height: 200px;
+  font-size: 1em;
   letter-spacing: 0.1em;
 }
 
@@ -51,13 +53,10 @@ nav li {
   padding: 0;
 }
 
-nav ul {
-  position: absolute;
-}
-
 nav li {
   display: inline-block;
   float: left;
+  // color: yellow;
 }
 
 nav li a {
@@ -67,13 +66,12 @@ nav li a {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
-  color: #e7e8a6;
-  border-bottom: 1px solid white;
+  color: green;
 }
 
 #Login-Logout {
-  // display: inline-block;
-  // float: left;
+  display: inline-block;
+  float: left;
 }
 
 .companyname {
@@ -97,33 +95,25 @@ nav li ul li {
   background: #141c11;
 }
 
-/*Hide*/
-nav li ul {
-  display: none;
-}
+//
+// nav li ul li a {
+//   width: auto;
+//   min-width: 150px;
+//   padding: 0 20px;
+// }
 
-nav li ul li a {
-  width: auto;
-  min-width: 150px;
-  padding: 0 20px;
-}
-
+// --------------------------------------------
 /*Display on hover*/
 nav ul li a:hover + .hidden,
 .hidden:hover {
   display: block;
 }
 
-.show-menu {
-  text-align: center;
-  line-height: 40px;
-  display: none;
-  border-bottom: 1px solid white;
-}
-
-#show-menu {
+/*Hides the drop down links*/
+nav li ul {
   display: none;
 }
+// --------------------------------------------
 
 input[type="checkbox"] {
   // display: none;
@@ -134,14 +124,29 @@ input[type="checkbox"]:checked ~ #menu {
 }
 
 //Header--------------------------------------
-header {
-  // text-align: center;
-  // text-transform: uppercase;
-  // font-style: italic;
-  letter-spacing: 0.2em;
+
+
+
+.right {
+  // margin-top: 109.5px;
+  width: 50%;
+  float: right;
+  margin-left: 10%;
+  margin-bottom: 500px;
 }
 
-//Footer--------------------------------------
-footer {
+.left {
+  // margin-top: 100px;
+  // display: inline;
+  // width: 450px;
+  font-size: 3em;
+  height: 200px;
+}
 
+.left a{
+  // width: 40%;
+  font-size: 4em;
+  text-align: center;
+  margin-left: 2%;
+  line-height: 1;
 }
