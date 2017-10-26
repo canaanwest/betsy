@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
 
   def checkout
     if mark_items_as_purchased
+      @cart = @pending_order
       flash[:status] = :success
       @pending_order.order_status = "paid"
       @pending_order.save
@@ -32,7 +33,7 @@ class OrdersController < ApplicationController
       find_cart
 
       # if @user
-      #   @user.find_pending_order.order_status = "paid"
+      #   Order.where(user_id =).last = "paid"
       #   @user.save
       # end
       #nexT: mark the entire order as paid (currently only items are marked paid)
@@ -72,7 +73,7 @@ class OrdersController < ApplicationController
   def mark_items_as_purchased
     entries = @pending_order.order_products
     order_id = @pending_order.id
-    items_for_purchase = []
+    @items_for_purchase = []
 
     entries.each do |entry|
       if !(entry.valid?)
@@ -85,14 +86,14 @@ class OrdersController < ApplicationController
       available_items = entry.product.available_items
 
       quantity.times do
-        items_for_purchase << available_items.pop
+        @items_for_purchase << available_items.pop
       end
     end
 
-    items_for_purchase.each {|item| item.purchase(order_id)}
+    @items_for_purchase.each {|item| item.purchase(order_id)}
 
 
-    items_for_purchase.each do |item|
+    @items_for_purchase.each do |item|
 
       if item.save
         flash[:result_text] = "Items were saved."
