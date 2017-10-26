@@ -9,7 +9,7 @@
 <section class="my_products">
   <% @user.products.order(:id).each do |product| %>
     <article class="products">
-      <h3><%= product.name %></h3>
+      <h3><%= link_to product.name, product_path(product.id)%></h3>
       <ul>
         <li>
           <img class="thumbnail" src=<%=product.product_photo%> alt="product photo">
