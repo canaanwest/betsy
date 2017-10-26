@@ -33,6 +33,16 @@ describe ItemsController do
     end
   end
 
+
+  # TODO
+  describe "Create" do
+    it "Should be able to create a new item" do
+      proc {
+        post create_item_path, params: {item: {shipping_status: false, purchase_status: false, product_id: products[:converse].id, order_id: nil }}}.must_change 'Item.count', 1
+
+        must_respond_with :redirect
+        must_redirect_to root_path
+
   describe "Create" do
     it "Should be able to create a new item" do
 
@@ -44,6 +54,7 @@ describe ItemsController do
 
       must_respond_with :redirect
       must_redirect_to root_path
+
     end
   end
 
