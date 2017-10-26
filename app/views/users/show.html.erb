@@ -6,7 +6,7 @@
     </div>
       <% @user.products.show_available.each do |product|%>
         <aside class="productinfo-container row large-12 columns" >
-          <a href="https://www.fillmurray.com/100/100"><img src="http://fillmurray.com/100/100"></a>
+          <a href=<%=product.product_photo%>><img src=<%=product.product_photo%></a>
           <div class="productinfo">
             <ul>
               <li>
