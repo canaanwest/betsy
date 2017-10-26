@@ -24,7 +24,6 @@ describe ApplicationController do
     session[:user_id].must_equal  user.id
     session[:pending_order_id].must_be :!=, guest_cart_id
     session[:pending_order_id].must_equal orders(:mias_pending_order).id
-
   end
 
   it "should create a new pending_order for a guest user" do
@@ -42,8 +41,6 @@ describe ApplicationController do
     log_in(user, :github)
     get root_path
     session[:user_id].must_equal user.id
-    (Order.find(session[:pending_order_id])).session_id.must_equal guest_session_id
+    (Order.find_by(session[:pending_order_id])).session_id.must_equal guest_session_id
   end
-
-
 end

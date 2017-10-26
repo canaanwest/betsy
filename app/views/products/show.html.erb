@@ -1,4 +1,5 @@
 
+
   <section class="product-details">
     <h3><%= @product.name.upcase %> </h3>
     <p><%= @product.description %></p>
@@ -24,12 +25,8 @@
 
   </section>
 
-
-<!-- ------------------------------------------------- -->
-
 <section class="reviews">
   <h4>What People are Saying?</h4>
-
 <% if @current_user_is_not_product_owner %>
   <h5><%= link_to "Leave a Review!", new_new_review_path(@product) %></h5>
 <% end %>
