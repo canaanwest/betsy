@@ -24,3 +24,7 @@
 /coverage
 
 .byebug_history
+
+.env
+
+public/assets/**

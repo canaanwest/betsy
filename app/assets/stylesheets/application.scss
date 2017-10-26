@@ -83,17 +83,10 @@ nav ul li a:hover + .hidden,
 nav li ul {
   display: none;
 }
-// CHECKBOXES--------------------------------------------
 
-input[type="checkbox"] {
-  // display: none;
-}
 
-input[type="checkbox"]:checked ~ #menu {
-  display: block;
-}
 
-//NAV--------------------------------------
+//NAV-----ADDED---------------------------------
 
 .right {
   float: right;
@@ -139,4 +132,13 @@ input[type="checkbox"]:checked ~ #menu {
   color: black;
 }
 
+// CHECKBOXES--------------------------------------------
 
+
+input[type="checkbox"] {
+  // display: none;
+}
+
+input[type="checkbox"]:checked ~ #menu {
+  display: block;
+}
