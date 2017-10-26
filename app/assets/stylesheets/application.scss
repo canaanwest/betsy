@@ -24,21 +24,10 @@ body, h1, h2, h3, h4, h5, footer {
 
 }
 
-// .shopping-cart {
-//   height: 3em;
-//   width: auto;
-//   padding-top: 4px;
-// }
-
-// footer {
-//   padding-top: 1em;
-//   display: flex;
-//   justify-content: center;
-// }
 
 //Nav--------------------------------------
 nav {
-  background: #5e2a2c;
+  background: #3f6172;
   text-transform: uppercase;
   width: auto;
   height: 200px;
@@ -68,12 +57,6 @@ nav li a {
   color:black;
 }
 
-// #Login-Logout {
-//   display: inline-block;
-//   float: left;
-// }
-
-
 /*Dropdown*/
 .menu_item a:hover{
   background: #8c4511;
@@ -89,13 +72,6 @@ nav li ul li {
   float: none;
   background: none;
 }
-
-//
-// nav li ul li a {
-//   width: auto;
-//   min-width: 150px;
-//   padding: 0 20px;
-// }
 
 // --------------------------------------------
 /*Display on hover*/
@@ -126,6 +102,7 @@ input[type="checkbox"]:checked ~ #menu {
   float: right;
 }
 
+
 .right ul li a:hover {
   background-color: transparent;
   color: black;
@@ -134,12 +111,24 @@ input[type="checkbox"]:checked ~ #menu {
 }
 
 .left {
-  // margin-top: 100px;
-  // display: inline;
-  // width: 450px;
   font-size: 3em;
   height: 200px;
 }
+
+
+// ===========================================
+// .left:hover {
+//   // background-color: pink;
+// }
+// ===========================================
+
+.left:hover
+{
+  -webkit-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
 
 .left a{
   // width: 40%;
@@ -158,3 +147,7 @@ input[type="checkbox"]:checked ~ #menu {
 .button:hover {
   color: black;
 }
+
+
+
+// -------------------------
