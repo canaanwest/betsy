@@ -73,7 +73,6 @@ nav li ul li {
   background: none;
 }
 
-// --------------------------------------------
 /*Display on hover*/
 nav ul li a:hover + .hidden,
 .hidden:hover {
@@ -84,7 +83,7 @@ nav ul li a:hover + .hidden,
 nav li ul {
   display: none;
 }
-// --------------------------------------------
+// CHECKBOXES--------------------------------------------
 
 input[type="checkbox"] {
   // display: none;
@@ -94,9 +93,7 @@ input[type="checkbox"]:checked ~ #menu {
   display: block;
 }
 
-//Header--------------------------------------
-
-
+//NAV--------------------------------------
 
 .right {
   float: right;
@@ -115,12 +112,6 @@ input[type="checkbox"]:checked ~ #menu {
   height: 200px;
 }
 
-
-// ===========================================
-// .left:hover {
-//   // background-color: pink;
-// }
-// ===========================================
 
 .left:hover
 {
