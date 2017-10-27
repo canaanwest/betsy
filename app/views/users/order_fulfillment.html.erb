@@ -1,7 +1,7 @@
 <h1>Merchant Order Fulfillment Page</h1>
 
 <h3>Merchant Stats</h3>
-<h4>Total Revenue <%= @user.total_revenue %></h4>
+<h4>Total Revenue <%= readable_money(@user.total_revenue.round(2)) %></h4>
 <table>
   <tr>
     <th>
@@ -15,13 +15,13 @@
     </th>
   </tr>
   <td>
-    <%=  @user.paid_revenue %>
+    <%=  readable_money(@user.paid_revenue.round(2)) %>
   </td>
   <td>
-    <%= @user.shipped_revenue %>
+    <%= readable_money(@user.shipped_revenue.round(2)) %>
   </td>
   <td>
-    <%= @user.canceled_revenue %>
+    <%= readable_money(@user.canceled_revenue.round(2)) %>
   </td>
 </table>
 
@@ -86,7 +86,7 @@
         <%= link_to entry.order.id, view_order_path(entry.order.id) %>
       </td>
       <td>
-        <%= entry.order.updated_at %>
+        <%= readable_date(entry.order.updated_at) %>
       </td>
       <td>
         <%= link_to(entry.product.name, product_path(entry.product.id)) %>
@@ -95,7 +95,7 @@
         <%= entry.quantity %>
       </td>
       <td>
-        <%= entry.subtotal %>
+        <%= readable_money(entry.subtotal.round(2)) %>
       </td>
       <td>
         <%= entry.order.order_status %>
@@ -147,11 +147,11 @@
       <% @shipped_entries.each do |entry| %>
       <tr>
         <td>
-          <%= entry.order.id %>
+          <%#= entry.order.id %>
           <%= link_to entry.order.id, view_order_path(entry.order.id) %>
         </td>
         <td>
-          <%= entry.order.updated_at %>
+          <%= readable_date(entry.order.updated_at) %>
         </td>
         <td>
           <%= link_to(entry.product.name, product_path(entry.product.id)) %>
@@ -160,7 +160,7 @@
           <%= entry.quantity %>
         </td>
         <td>
-          <%= entry.subtotal %>
+          <%= readable_money(entry.subtotal.round(2)) %>
         </td>
         <td>
           <%= entry.order.order_status %>
@@ -209,11 +209,11 @@
       <% @shipped_entries.each do |entry| %>
       <tr>
         <td>
-          <%= entry.order.id %>
-          <%#= link_to entry.order.id, order_path(entry.order.id) %>
+          <%#= entry.order.id %>
+          <%= link_to entry.order.id, order_path(entry.order.id) %>
         </td>
         <td>
-          <%= entry.order.updated_at %>
+          <%= readable_date(entry.order.updated_at) %>
         </td>
         <td>
           <%= link_to(entry.product.name, product_path(entry.product.id)) %>
@@ -222,7 +222,7 @@
           <%= entry.quantity %>
         </td>
         <td>
-          <%= entry.subtotal %>
+          <%= readable_money(entry.subtotal.round(2)) %>
         </td>
         <td>
           <%= entry.order.order_status %>

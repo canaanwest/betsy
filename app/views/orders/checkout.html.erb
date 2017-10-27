@@ -18,7 +18,7 @@
       <tr>
         <td><%= link_to entry.product.name, product_path(entry.product.id)%></td>
         <td><%= entry.quantity %></td>
-        <td> <%= entry.product.price%> </td>
+        <td> <%= readable_money(entry.product.price.round(2))%> </td>
         <td> <%= @items_for_purchase.first.shipping_status %> </td>
       </tr>
       <% end %>
