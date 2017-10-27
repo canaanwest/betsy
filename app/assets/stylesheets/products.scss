@@ -4,7 +4,7 @@
 
 // INDEX------------------------------------------
 section {
-  width: 90%;
+  width: 95%;
   margin-left: 2%;
   margin-right: 2%;
 }
@@ -13,8 +13,8 @@ article {
   display: inline-block;
   border: solid 1px;
   border-radius: 25px;
-  width: 29%;
-  min-width: 25%;
+  width: 20%;
+  min-width: auto;
   height: 400px;
   text-align: center;
   margin: 2% 2% 2% %2%;
@@ -22,8 +22,8 @@ article {
 
 article img {
   margin-top: 5%;
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
 }
 
 // SHOW------------------------------------------------

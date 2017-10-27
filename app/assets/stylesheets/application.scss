@@ -24,6 +24,17 @@ body, h1, h2, h3, h4, h5, footer {
 
 }
 
+body {
+    width: 100%;
+    height: calc(100vh - 200px);
+    // original background (revert back if deply to heroku doesnt work)
+    // background-image: url("/assets/purple.jpg");
+    // background-image: image-url('purple.jpg');
+    background-repeat: no-repeat;
+    // opacity: 0.2;
+
+  }
+
 
 //Nav--------------------------------------
 nav {
@@ -152,9 +163,7 @@ input[type="checkbox"]:checked ~ #menu {
   height: calc(100vh - 200px);
   // original background (revert back if deply to heroku doesnt work)
   // background-image: url("/assets/purple.jpg");
-
   background-image: image-url('purple.jpg');
-
   background-repeat: no-repeat;
 }
 
