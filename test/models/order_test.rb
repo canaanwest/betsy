@@ -61,29 +61,13 @@ describe Order do
   end
 
   describe "validations" do
-    it "cannot be saved as paid if it has invalid order_products" do
-      user = users(:mia)
-      pending_order = user.find_pending_order
-      example_pending_order = pending_order.order_products.first
-      example_pending_order.must_equal order_products(:mias_pending_products)
-      (pending_order.valid?).must_equal true
-      example_pending_order.quantity = 0
-      # binding.pry
-      pending_order.order_status = "paid"
-
-      (pending_order.valid?).must_equal false
-
-    end
-
     it "must have session_id" do
       order.session_id.must_be :==, nil
       order.valid?.must_equal false
-
     end
 
 
     it "must have an order order_status of pending, paid, shipped or canceled" do
-
       orders.each do |test_order|
         ["pending","paid", "shipped", "canceled"].must_include test_order.order_status
         test_order.valid?.must_equal true

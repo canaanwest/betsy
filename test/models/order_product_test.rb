@@ -11,6 +11,16 @@ describe OrderProduct do
 
   end
 
+  describe "paid?" do
+    it "returns true for paid orders and false for unpaid orders" do
+      orders(:pending_order).paid?.must_equal false
+      orders(:pending_order).order_status = "paid"
+      orders(:pending_order).paid?.must_equal true
+    end
+
+  end
+
+
   describe "items_available?" do
     it "should return true if product has available inventory" do
       entry = OrderProduct.find_by(id: order_products(:mias_pending_products).id)
