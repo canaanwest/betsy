@@ -1,15 +1,49 @@
-<h1>Your Billing Information</h1>
+<%= link_to "Edit Billing Information", edit_billing_datum_path(@billing_data.id), class:"button" %>
+<%= link_to "Confirm Order", checkout_path%>
 
-<ul>
-  <li>Email Address: <%= @billing_data.email %></li>
-  <li>Name on Card: <%= @billing_data.credit_card_name %></li>
-  <li>Mailing Address: <%= @billing_data.mailing_address %></li>
-  <li>Credit Card Number: <%= @billing_data.credit_card_number %></li>
-  <li>CVV: <%= @billing_data.credit_card_cvv %></li>
-  <li>Billing Zipcode: <%= @billing_data.billing_zip_code %></li>
-</ul>
 
-<ul class="menu">
-  <%= link_to "Edit Billing Information", edit_billing_datum_path(@billing_data.id), class:"button" %>
-  <%= link_to "Confirm Order", checkout_path%>
-</ul>
+
+<!-- --------------------------------------------- -->
+
+
+<section class="profile-section">
+
+  <h1>Your Billing Information</h1>
+
+  <table class="table">
+    <tr class="table-head">
+      <th>Required</th>
+      <th>Your Info</th>
+    </tr>
+
+    <tr>
+      <td>Email Address</td>
+      <td><%= @billing_data.email %></td>
+    </tr>
+
+    <tr>
+      <td>Name on Card</td>
+      <td><%= @billing_data.credit_card_name %></td>
+    </tr>
+
+    <tr>
+      <td>Mailing Address</td>
+      <td><%= @billing_data.mailing_address %></td>
+    </tr>
+
+    <tr>
+      <td>Credit Card Number</td>
+      <td><%= @billing_data.credit_card_number %></td>
+    </tr>
+
+    <tr>
+      <td>CVV</td>
+      <td><%= @billing_data.credit_card_cvv %></td>
+    </tr>
+
+    <tr>
+      <td>Billing Zipcode</td>
+      <td><%= @billing_data.billing_zip_code %></td>
+    </tr>
+  </table>
+</section>

@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
   def add_product
     @cart_entry = OrderProduct.new(product_id: params[:id].to_i, order_id: @pending_order.id)
     if @cart_entry.save
-      flash[:status] = :success
+      # flash[:status] = :success
       flash[:result_text] = "Successfully added to your cart!"
       redirect_to order_path(@pending_order)
       redirect_to product_path(params[:id])
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
     entries.each do |entry|
       if !(entry.valid?)
         flash[:status] = :error
-        flash[:result_text] = "Check your cart, inventory has changed for #{entry.product}"
+        flash[:result_text] = "Check your cart, inventory has changed"
         flash[:messages] = entry.errors
         return false
       end
@@ -98,7 +98,7 @@ class OrdersController < ApplicationController
       if item.save
         flash[:result_text] = "Items were saved."
       else
-        flash[:status] = :error
+        # flash[:status] = :error
         flash[:result_text] << "Items were not saved.  Please contact web administrator.   "
         flash[:messages] = "There were errors"
         # item.errors

@@ -34,7 +34,7 @@ describe ProductsController do
         get product_path(Product.last.id + 1)
         must_respond_with :not_found
       end
-      
+
       it "users cannot leave reviews for their products" do
         user = users(:carl)
         log_in(user, :github)
@@ -45,9 +45,9 @@ describe ProductsController do
 
       end
     end
-    
-    
-    
+
+
+
     describe "edit" do
       it "logged in owner can see an edit form for their product " do
         user = users(:carl)
@@ -216,8 +216,7 @@ describe ProductsController do
         user = users(:mia)
         product = products(:converse)
         log_in(user, :github)
-
-        get product_path(product.id)
+        
         proc {
           post product_path(product.id), params: {quantity: "3"}
         }.must_change 'OrderProduct.count', 1

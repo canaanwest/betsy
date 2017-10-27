@@ -11,9 +11,9 @@ two:
   order: four
 
 three:
-  quantity: 3
+  quantity: 2
   product: converse
-  order: paid_order
+  order: two
 
 four:
   quantity: 5
@@ -39,3 +39,18 @@ guest_pencil_paid_order:
   quantity: 100
   product: pencil
   order: guest_paid_order
+
+shipped_order_product:
+  quantity: 50
+  product: pencil
+  order: three
+
+shipped_pencil:
+  quantity: 1
+  product: pencil
+  order: unshipped_paid_order
+
+shipped_lamp:
+  quantity: 2
+  product: lamp
+  order: unshipped_paid_order
