@@ -30,7 +30,7 @@
       Last 4 Digits of Credit Card:
     </th>
     <td>
-      <%= @order_for_view.billing_datum.credit_card_number[-5..-1] %>
+      <%=@order_for_view.billing_datum.credit_card_number.last(4)%>
     </td>
   </tr>
   <tr>
