@@ -29,9 +29,7 @@ class User < ApplicationRecord
     end
 
     #TODO- Question from Julia- Why would a user have multiple pending orders? If they sign in as a user and add to cart, and then logout and add some to a new cart, then sign back in?
-    if pending_orders.length > 1
-      # some logic about combining the contents of the orders
-    elsif pending_orders.length == 1
+    if pending_orders.length > 0
       return pending_orders.first
     else
       return false
