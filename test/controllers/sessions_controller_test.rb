@@ -28,5 +28,10 @@ describe SessionsController do
     saved_user = User.find_by(username: "Greg")
     session[:user_id].must_equal saved_user.id
   end
+
+  it "can log a user in" do
+    login_path(users(:carl), :github)
+    must_respond_with
+  end
 end
 end
