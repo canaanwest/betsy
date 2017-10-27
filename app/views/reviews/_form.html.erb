@@ -1,10 +1,14 @@
+<section class="review-form">
+
+<h1>Leave a Review</h1>
+
 <%= form_for @review do |f| %>
 
   <%= f.hidden_field :product_id, value: params[:id]%>
 
   <%= f.hidden_field :user_id, value: session[:user_id] %>
 
-  <%= f.label :review %>
+  <%= f.label :enter_text_below %>
   <%= f.text_field :text %>
 
   <%= f.radio_button :rating, 1 %>
@@ -25,3 +29,4 @@
   <%= f.submit "submit" %>
 
 <% end %>
+</section>
