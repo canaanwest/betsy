@@ -5,7 +5,7 @@
 
 <ul class="top-links">
   <li>Not <%=@user.username%>? <%=link_to "Log out!", logout_path%></li>
-  <li><%= link_to "Manage your Orders"%></li>
+  <li><%= link_to "Manage your Orders", order_fulfillment_path%></li>
   <li><%= link_to "Create a New Product", new_product_path %></li>
 </ul>
 
