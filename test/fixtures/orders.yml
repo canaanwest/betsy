@@ -33,7 +33,7 @@ pending_order:
 paid_order:
   order_status: paid
   user: mia
-  billing_datum: two
+  billing_datum: mia_billing_datum
   session_id: orderpaid_order
 
 shipped_order:

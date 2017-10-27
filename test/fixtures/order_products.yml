@@ -11,9 +11,9 @@ two:
   order: four
 
 three:
-  quantity: 3
+  quantity: 2
   product: converse
-  order: paid_order
+  order: two
 
 four:
   quantity: 5
@@ -39,6 +39,7 @@ guest_pencil_paid_order:
   quantity: 100
   product: pencil
   order: guest_paid_order
+
 
 existing_tea_entry:
   quantity: 1

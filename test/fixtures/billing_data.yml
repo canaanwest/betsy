@@ -20,6 +20,7 @@ mia_billing_datum:
   expiration_date: 1111
   user_id: mia
 
+
 guest_billing_datum:
   email: star@lightbright.com
   mailing_address: 2929 StarLight Street, Tacoma, Washington 02020
@@ -27,5 +28,6 @@ guest_billing_datum:
   credit_card_number: 2392 2932 1010 2020
   credit_card_cvv: 232
   billing_zip_code: 02020
+  expiration_date: 12/1/2025
   expiration_date: 1111
   user_id:

@@ -75,6 +75,4 @@ class OrderProduct < ApplicationRecord
     end
   end
 
-
-
 end

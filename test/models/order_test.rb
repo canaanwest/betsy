@@ -1,3 +1,4 @@
+
 require "test_helper"
 require "pry"
 
@@ -10,7 +11,7 @@ describe Order do
   let(:shipped_order) { orders(:shipped_order)}
   let(:canceled_order) { orders(:canceled_order)}
   let(:guest_pending_order) { orders(:guest_pending_order)}
-  
+
   describe "relations" do
     it "has a nil user if not logged in" do
       result = guest_pending_order.user
@@ -59,30 +60,16 @@ describe Order do
     end
   end
 
+
+
   describe "validations" do
-    it "cannot be saved as paid if it has invalid order_products" do
-      user = users(:mia)
-      pending_order = user.find_pending_order
-
-      pending_order.order_products.first.must_equal order_products(:mias_pending_products)
-
-      (pending_order.valid?).must_equal true
-
-      pending_order.order_status = "paid"
-      # binding.pry
-      (pending_order.valid?).must_equal false
-
-    end
-
     it "must have session_id" do
       order.session_id.must_be :==, nil
       order.valid?.must_equal false
-
     end
 
 
     it "must have an order order_status of pending, paid, shipped or canceled" do
-
       orders.each do |test_order|
         ["pending","paid", "shipped", "canceled"].must_include test_order.order_status
         test_order.valid?.must_equal true
@@ -101,6 +88,7 @@ describe Order do
 
 
     end
+
 
     it "new orders should have order_status of pending" do
       order.order_status.must_equal "pending"
@@ -128,4 +116,49 @@ describe Order do
     end
 
   end
+
+  describe "model methods" do
+    describe "sub_total, tax_amount and taxed_total methods" do
+      it "returns a number value" do
+        orders(:unshipped_paid_order).sub_total.must_be_instance_of BigDecimal
+        orders(:unshipped_paid_order).taxed_total.must_be_instance_of BigDecimal
+      end
+
+      it "correctly calculates the cost of all items in an order" do
+        #order_products: shipped_lamp and shipped pencil
+        orders(:unshipped_paid_order).sub_total.must_equal 605
+      end
+
+      it "correctly calculates the cost of all items in an order WITH TAX!" do
+        #order_products: shipped_lamp and shipped pencil
+        orders(:unshipped_paid_order).taxed_total.must_equal 658.6635
+      end
+    end
+
+    describe "has_invalid_entries?" do
+      it "returns false if it has only valid entries (i.e. order_products) and true if has invalid entries" do
+        order = orders(:unshipped_paid_order)
+        order.has_invalid_entries?.must_equal false
+        # binding.pry
+        items = order.order_products.first.product.items
+        items.first.shipping_status = "true"
+        order.has_invalid_entries?.must_equal true
+      end
+    end
+
+    describe "check_for_duplicates" do
+      it "returns a order_product object if there is an entry in the cart with the same user_id. otherwise it returns false" do
+        orders(:one).check_for_duplicates(products(:converse).id).must_be_instance_of OrderProduct
+        pencil_order = orders(:guest_pending_order)
+        result = pencil_order.check_for_duplicates(products(:converse).id)
+        result.must_equal false
+      end
+
+
+    end
+
+  end
+
+
+
 end
