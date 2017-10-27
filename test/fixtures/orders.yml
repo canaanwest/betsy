@@ -71,3 +71,8 @@ guest_sleepytime_order:
 
 out_of_stock:
   session_id: "out of stock order no items"
+
+guest2_paid_order:
+  order_status: paid
+  billing_datum: guest_billing_datum
+  session_id: guest2_paid_order

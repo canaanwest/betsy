@@ -49,3 +49,8 @@ entry_without_items:
   quantity: 1
   product: out_of_stock
   order: out_of_stock
+
+guest2_paid_order:
+  quantity: 1
+  product: sleepytime
+  order: guest2_paid_order
