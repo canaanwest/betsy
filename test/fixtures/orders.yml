@@ -68,3 +68,6 @@ guest_paid_order:
 
 guest_sleepytime_order:
   session_id: "it's sleepy"
+
+out_of_stock:
+  session_id: "out of stock order no items"

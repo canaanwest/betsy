@@ -36,3 +36,9 @@ sleepytime:
   price: 2.50
   description: it's sleepytime
   user: sophie_no_pending_order
+
+out_of_stock:
+  name: it's out_of_stock
+  price: 100
+  description: too bad
+  user: sophie_no_pending_order
