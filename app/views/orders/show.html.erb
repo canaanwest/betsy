@@ -33,7 +33,6 @@
             <%= f.text_field :quantity %>
             <%= f.submit "Update Quantity", class:"button"%>
           <% end %>
-          <%= link_to "Edit Item", edit_order_product_path(entry.id), class:"button" %>
         </td>
         <td><%= link_to "Delete Item", order_product_path(entry.id), method: :delete, data: {confirm: "Are you sure you want to remove #{entry.product.name} from cart?"}, class:"button" %></td>
 
