@@ -7,6 +7,7 @@ carl_billing_datum:
   credit_card_number: 2423 2211 3231 2121
   credit_card_cvv: 344
   billing_zip_code: 98112
+  expiration_date: 5/7/20
   user_id: mia
 
 mia_billing_datum:
@@ -16,6 +17,7 @@ mia_billing_datum:
   credit_card_number: 2392 2932 1010 2020
   credit_card_cvv: 232
   billing_zip_code: 02020
+  expiration_date: 11/07/19
   user_id: carl
 
 guest_billing_datum:
@@ -25,4 +27,5 @@ guest_billing_datum:
   credit_card_number: 2392 2932 1010 2020
   credit_card_cvv: 232
   billing_zip_code: 02020
+  expiration_date: 12/1/2025
   user_id:

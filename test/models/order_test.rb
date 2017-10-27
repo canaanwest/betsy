@@ -1,3 +1,4 @@
+
 require "test_helper"
 require "pry"
 
@@ -10,7 +11,7 @@ describe Order do
   let(:shipped_order) { orders(:shipped_order)}
   let(:canceled_order) { orders(:canceled_order)}
   let(:guest_pending_order) { orders(:guest_pending_order)}
-  
+
   describe "relations" do
     it "has a nil user if not logged in" do
       result = guest_pending_order.user
@@ -63,13 +64,13 @@ describe Order do
     it "cannot be saved as paid if it has invalid order_products" do
       user = users(:mia)
       pending_order = user.find_pending_order
-
-      pending_order.order_products.first.must_equal order_products(:mias_pending_products)
-
+      example_pending_order = pending_order.order_products.first
+      example_pending_order.must_equal order_products(:mias_pending_products)
       (pending_order.valid?).must_equal true
-
-      pending_order.order_status = "paid"
+      example_pending_order.quantity = 0
       # binding.pry
+      pending_order.order_status = "paid"
+
       (pending_order.valid?).must_equal false
 
     end
