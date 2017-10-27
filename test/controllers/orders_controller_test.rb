@@ -1,6 +1,42 @@
 require "test_helper"
 
 describe OrdersController do
+  describe "view" do
+  it "should successfully let an auth user to view billing data info for an order" do
+    user = users(:carl)
+    log_in(user, :github)
+    pending_order = orders(:mias_pending_order)
+    get view_order_path(pending_order.id)
+    must_respond_with :success
+  end
+
+  it "should render 404 for a guest" do
+    pending_order = orders(:mias_pending_order)
+    get root_path
+    get view_order_path(pending_order.id)
+    must_respond_with :not_found
+  end
+  it "should render 404 for a user without access" do
+    user = users(:no_access)
+    log_in(user, :github)
+    pending_order = orders(:mias_pending_order)
+    get root_path
+    # binding.pry
+    get view_order_path(pending_order.id)
+    must_respond_with :not_found
+  end
+  end
+  describe "show" do
+    # GM: how to test instance variables ?? )-':
+    it "should find cart" do
+      user = users(:mia)
+      log_in(user, :github)
+      get cart_path
+      # assigns(:cart)
+      # assigns(:cart).must_equal orders(:mias_pending_order)
+      must_respond_with :success
+    end
+  end
   describe "checkout" do
     it "should be successful with a valid order" do
       user = users(:mia)
@@ -28,6 +64,8 @@ describe OrdersController do
 
     end
   end
+
+
 
   # it "should post to add_product" do
   #   product = products(:converse)
