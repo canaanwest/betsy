@@ -7,5 +7,36 @@
   height: calc(100vh - 200px);
   background-image: url("/assets/purple.jpg");
   background-repeat: no-repeat;
-  background-image: image-url("hero-000.jpg");
+}
+
+.top-links {
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+
+.profile-section {
+  display: inline-block;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.button:hover {
+  color: black;
+  background: none;
+  background-color: transparent;
+  border: solid 1px;
+  border-radius: 15px;
+}
+
+tbody:nth-child(even) {
+   background-color: white;
+ }
+
+tbody:nth-child(odd) {
+  background-color: #ebebeb;
+}
+
+.table th,
+.table td {
+  text-align: center;
 }
