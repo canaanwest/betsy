@@ -23,6 +23,7 @@ class User < ApplicationRecord
   def paid_entries
     entries = self.merchant_entries
     paid_entries = []
+    return false if !(entries)
     entries.each do |entry|
       paid_entries << entry if entry.paid?
     end
@@ -33,6 +34,7 @@ class User < ApplicationRecord
   def shipped_entries
     entries = self.merchant_entries
     shipped_entries = []
+    return false if !(entries)
     entries.each do |entry|
       shipped_entries << entry if entry.shipped?
     end
@@ -43,6 +45,7 @@ class User < ApplicationRecord
   def canceled_entries
     entries = self.merchant_entries
     canceled_entries = []
+    return false if !(entries)
     entries.each do |entry|
       canceled_entries << entry if entry.canceled?
     end
