@@ -55,7 +55,9 @@ class Order < ApplicationRecord
     if invalid_entries.first != nil
       self.errors[:entries] << "are invalid."
       #TODO: Julia took out below line. Does not seem needed. Also, sytnax is incorrect- does not use variable entry in ternary.
-      invalid_entries.each {|entry| self.errors[:entries] << entry.errors}
+
+      invalid_entries.each  {|entry| self.errors[:entries] << entry.errors}
+
       return true #is NOT a valid order
     else
       return false #is a valid order

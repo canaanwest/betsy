@@ -216,9 +216,9 @@ describe ProductsController do
         user = users(:mia)
         product = products(:converse)
         log_in(user, :github)
-        
+
         proc {
-          post product_path(product.id), params: {quantity: "3"}
+          post products_path(product.id), params: {quantity: "3"}
         }.must_change 'OrderProduct.count', 1
       end
 

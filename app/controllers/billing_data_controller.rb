@@ -49,7 +49,7 @@ class BillingDataController < ApplicationController
     end
   end
 
-private
+  private
   def find_billing
     @billing_data = BillingDatum.find_by(id: params[:id].to_i)
   end
@@ -71,8 +71,9 @@ private
   end
 
   def permission
-    unless session[:user_id] == @billing_data.user_id || @user.id == @billing_data.user_id
-        render render_404
+    unless session[:user_id] == @billing_data.user_id || @pending_order.billing_datum_id == @billing_data.id
+      render render_404
     end
   end
+
 end

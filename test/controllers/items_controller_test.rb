@@ -59,6 +59,12 @@ describe ItemsController do
       must_redirect_to root_path
 
     end
+
+    it "should respond with bad request if you try to make an item with bad data" do
+      post create_item_path("not good")
+
+      must_respond_with :bad_request
+    end
   end
 
 
@@ -69,6 +75,14 @@ describe ItemsController do
 
           must_respond_with :redirect
           must_redirect_to root_path
+    end
+
+    it "should respond with bad request if there are no items to destroy for that item" do
+      product = products(:out_of_stock)
+      start_count = Item.count
+      delete item_path(product.id)
+      must_respond_with :bad_request
+      Item.count.must_equal start_count
     end
   end
 end

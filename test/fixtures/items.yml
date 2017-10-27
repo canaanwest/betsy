@@ -36,32 +36,11 @@ flats_ordered_shipped:
   product: flats
   order: two
 
-unshipped_item_one:
-  shipping_status: false
-  purchase_status: true
-  product: lamp
-  order: unshipped_paid_order
+tea_1:
+  product: sleepytime
 
-unshipped_product_one:
-  shipping_status: false
-  purchase_status: true
-  product: lamp
-  order: unshipped_paid_order
+tea_2:
+  product: sleepytime
 
-unpurchased_lamp_one:
-  shipping_status: false
-  purchase_status: false
-  product: lamp
-  order: unshipped_paid_order
-
-unpurchased_lamp_two:
-  shipping_status: false
-  purchase_status: false
-  product: lamp
-  order: unshipped_paid_order
-
-unpurchased_pencil:
-  shipping_status: false
-  purchase_status: false
-  product: pencil
-  order: unshipped_paid_order
+tea_3:
+  product: sleepytime

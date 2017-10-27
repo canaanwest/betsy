@@ -40,17 +40,18 @@ guest_pencil_paid_order:
   product: pencil
   order: guest_paid_order
 
-shipped_order_product:
-  quantity: 50
-  product: pencil
-  order: three
 
-shipped_pencil:
+existing_tea_entry:
   quantity: 1
-  product: pencil
-  order: unshipped_paid_order
+  product: sleepytime
+  order: guest_sleepytime_order
 
-shipped_lamp:
-  quantity: 2
-  product: lamp
-  order: unshipped_paid_order
+entry_without_items:
+  quantity: 1
+  product: out_of_stock
+  order: out_of_stock
+
+guest2_paid_order:
+  quantity: 1
+  product: sleepytime
+  order: guest2_paid_order
