@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
     else
       flash[:status] = :error
       flash[:result_text] = "There was an error; you could not be checked out at this time"
-      redirect_back(fallback_location: cart_path)
+      redirect_to cart_path, status: 400
     end
   end
 
