@@ -21,7 +21,7 @@ describe OrdersController do
     log_in(user, :github)
     pending_order = orders(:mias_pending_order)
     get root_path
-    # binding.pry
+
     get view_order_path(pending_order.id)
     must_respond_with :not_found
   end
@@ -52,13 +52,11 @@ describe OrdersController do
       log_in(user, :github)
       get root_path
       session[:pending_order_id].must_equal orders(:mias_pending_order).id
-      order = Order.find(session[:pending_order_id])
       previous = products(:converse).num_available
-
       get checkout_path
 
       result = Product.find(products(:converse).id).num_available
-      # binding.pry
+
       result.must_equal (previous - 1)
     end
     it "should respond with an error if the product's stock no longer matches the entry" do
