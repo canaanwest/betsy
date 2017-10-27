@@ -8,7 +8,7 @@
 
 <% @categories.each do |category| %>
 <%# category.products.to_json %>
-  <ul>
+  <ul class="categories">
     <li><%= link_to category.name, category_path(category.id) %></li>
   </ul>
 <% end %>
