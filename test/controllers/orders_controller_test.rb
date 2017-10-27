@@ -60,8 +60,21 @@ describe OrdersController do
       result = Product.find(products(:converse).id).num_available
       # binding.pry
       result.must_equal (previous - 1)
-
-
+    end
+    it "should respond with an error if the product's stock no longer matches the entry" do
+      user = users(:mia)
+      log_in(user, :github)
+      get root_path
+      session[:pending_order_id].must_equal orders(:mias_pending_order).id
+      product = products(:converse)
+      product.items.each do |item|
+        item.purchase_status = true
+        item.order_id = orders(:out_of_stock).id
+        item.save
+      end
+      get checkout_path
+      must_respond_with :bad_request
+      flash[:result_text].must_include "There was an error; you could not be checked out at this time"
     end
   end
 
