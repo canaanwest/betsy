@@ -23,3 +23,12 @@ flats_ordered_shipped:
   purchase_status: true
   product: flats
   order: two
+
+tea_1:
+  product: sleepytime
+
+tea_2:
+  product: sleepytime
+
+tea_3:
+  product: sleepytime  

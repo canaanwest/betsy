@@ -65,3 +65,6 @@ guest_paid_order:
   user_id:
   billing_datum: guest_billing_datum
   session_id: guest_paid_order
+
+guest_sleepytime_order:
+  session_id: "it's sleepy"

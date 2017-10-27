@@ -39,3 +39,8 @@ guest_pencil_paid_order:
   quantity: 100
   product: pencil
   order: guest_paid_order
+
+existing_tea_entry:
+  quantity: 1
+  product: sleepytime
+  order: guest_sleepytime_order

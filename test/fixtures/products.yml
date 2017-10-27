@@ -30,3 +30,9 @@ chocolate:
   price: 200
   description: it's good
   user: sophie_no_pending_order
+
+sleepytime:
+  name: sleepytime
+  price: 2.50
+  description: it's sleepytime
+  user: sophie_no_pending_order
