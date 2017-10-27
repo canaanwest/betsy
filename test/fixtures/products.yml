@@ -31,7 +31,7 @@ chocolate:
   description: it's good
   user: sophie_no_pending_order
 
-<<<<<<< HEAD
+
 sleepytime:
   name: sleepytime
   price: 2.50
@@ -43,10 +43,9 @@ out_of_stock:
   price: 100
   description: too bad
   user: sophie_no_pending_order
-=======
+
 lamp:
   name: lamp
   price: 300
   description: let there be light
   user: carl
->>>>>>> 37fea0fd1fda99fc8303f7bd54b34dfed49c4a63
