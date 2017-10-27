@@ -22,9 +22,12 @@ describe ReviewsController do
         must_redirect_to product_path(products(:converse).id)
       end
 
-      it "GUESTS cannot leave a review on an unfound product" do
-
+      it "If correct info is not provided, render new" do
+        r = reviews(:one)
+        r.valid?
+        r.rating = 10
+        r.valid?.must_equal false
       end
     end
   end
-end 
+end
