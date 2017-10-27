@@ -48,7 +48,22 @@ class User < ApplicationRecord
   # end
 
   #TODO- Question from Julia- This method is shown in two places: here and in the application model. I think we can remove it here.
+  # CW wants to keep
   def show_available
     Product.where(visibility: true)
-   end
+  end
+
+  def has_past_orders?
+    past_orders = []
+    self.orders.each do |order|
+      if order.order_status == “paid” || order.order_status == “shipped” || order.order_status == “cancelled”
+        past_orders << order
+      end
+    end
+    if past_orders.length >= 1
+      return true
+    else
+      return false
+    end
+  end
 end

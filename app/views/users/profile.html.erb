@@ -43,3 +43,40 @@
     </tbody>
   </table>
 </section>
+
+<section class=“profile-section”>
+  <h3>Your Past Purchases</h3>
+  <% if @user.has_past_orders? %>
+    <table class=“table”>
+      <thead class=“table-head”>
+        <tr>
+          <th>Order</th>
+          <th>Product</th>
+          <th>Photo</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Order Status</th>
+        </tr>
+      </thead>
+      <% @user.orders.where(order_status: “paid”).where(order_status: “cancelled”).where(order_status: “shipped”).each do |order| %>
+      <tbody>
+
+         <% order.order_products.each do |order_product| %>
+          <tr>
+            <td><li>Order #<%= order.id %></li></td>
+            <td><li><%= link_to order_product.product.name, product_path(order_product.product.id)%></td>
+              <td><li><img class=“th small-6 large-3” src=<%=order_product.product.product_photo%> alt=“product photo”></li></td>
+              <td><li><%= order_product.product.price %></li></td>
+              <td><li><%= order_product.quantity %></li></td>
+              <td><li><%= order_product.order.order_status %></li></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>
+      You do not have any past orders. Get shopping!
+    </p>
+  <% end%>
+</section>
