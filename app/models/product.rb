@@ -34,5 +34,4 @@ class Product < ApplicationRecord
     Product.where(visibility: true)
   end
 
-
 end

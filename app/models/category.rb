@@ -14,7 +14,8 @@ class Category < ApplicationRecord
   #   end
   # end
 
-  def show_available
-    Product.where(visibility: true)
-  end
+  #TODO Julia removed the below method because it is a duplicate of a method in the product class (where it belongs)
+  # def show_available
+  #   Product.where(visibility: true)
+  # end
 end
