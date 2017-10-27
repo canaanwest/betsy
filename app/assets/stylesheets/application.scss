@@ -33,6 +33,7 @@ nav {
   height: 200px;
   font-size: 1em;
   letter-spacing: 0.1em;
+
 }
 
 nav ul,
@@ -89,6 +90,7 @@ nav li ul {
 //NAV-----ADDED---------------------------------
 
 .right {
+  margin-top: 5px;
   float: right;
 }
 
@@ -141,4 +143,58 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked ~ #menu {
   display: block;
+}
+
+
+// PROFILE & CART------------------------------
+.background {
+  width: 100%;
+  height: calc(100vh - 200px);
+  // original background (revert back if deply to heroku doesnt work)
+  // background-image: url("/assets/purple.jpg");
+
+  background-image: image-url('purple.jpg');
+
+  background-repeat: no-repeat;
+}
+
+.top-links {
+  margin-left: 5%;
+  margin-bottom: 2%;
+}
+
+.profile-section {
+  display: inline-block;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.button:hover {
+  color: black;
+  background: none;
+  background-color: transparent;
+  border: solid 1px;
+  border-radius: 15px;
+}
+
+tbody:nth-child(even) {
+   background-color: white;
+ }
+
+tbody:nth-child(odd) {
+  background-color: #ebebeb;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
+.order-title {
+  // margin-left: 5%;
+}
+
+.totals {
+  float: right;
+  // margin-right: 5%;
 }

@@ -1,65 +1,70 @@
-<h2>Your Order</h2>
 
-<section class="">
+
+<section>
   <% if @cart.order_products.length == 0 %>
   <%= "Get to shopping! Your cart is empty!" %>
-  <% else %>>
+  <% else %>
 
-  <% @cart.order_products.each do |entry| %>
-  <ol>
-    <li>
-      <ul>
-        <li>
-          Product: <%= entry.product.name%>
-        </li>
-        <li>
-          Unit Cost: <%= entry.product.price %>
-        </li>
-        <li>
-          Quantity: <%= entry.quantity %>
-        </li>
-        <li>
-          Product Subtotal: <%=entry.product.price * entry.quantity %>
-        </li>
-        <li>
-              <%= form_for entry, url: order_product_path(entry.id), method: :patch do |f|  %>
-                <%= f.label :quantity %>
-                <%= f.text_field :quantity %>
-                <%= f.submit "Update Quantity", class:"button"%>
-              <% end %>
-              <%= link_to "Edit Item", edit_order_product_path(entry.id), class:"button" %>
-         </li>
-         <li>
-               <%= link_to "Delete Item", order_product_path(entry.id), method: :delete, data: {confirm: "Are you sure you want to remove #{entry.product.name} from cart?"}, class:"button" %>
-         </li>
-            <hr />
-          </ul>
-    </li>
-  </ol>
-  <% end %>
 
-  <ul>
-    <li>
-      Subtotal: $<%= @cart.sub_total %>
-    </li>
-    <li>
-      Tax: $<%= @cart.tax_amount %>
-    </li>
-    <li>
-      Total: $<%= @cart.taxed_total %>
-    </li>
-  </ul>
 
-  <% if session[:user_id] %>
-  <% @user = User.find_by(id: session[:user_id]) %>
-    <%if @user.billing_datum_id %>
-      USER: <%= @user.username %>
-      Billing Datum ID <%= @user.billing_datum_id %>
-      <%= link_to("Proceed to Checkout", edit_billing_datum_path(@user.billing_datum_id), class:'button') %>
-      <% end %>
-  <%elsif @pending_order.billing_datum_id %>
-    <%= link_to("Proceed to checkout", edit_billing_datum_path(@pending_order.billing_datum_id), class:"button")%>
-  <%else%>
-    <%= link_to("Proceed to Checkout", new_billing_datum_path, class:'button')%>
-  <%end %>
-<%end%>
+  <section class="profile-section">
+    <h2 class="order-title">Your Order</h2>
+
+    <table class="table">
+      <thead class="table-head">
+        <tr>
+          <th>Product</th>
+          <th>Unit Cost</th>
+          <th>Quantity</th>
+          <th>Product Subtotal</th>
+          <th>Update Quantity</th>
+          <th>Delete Item</th>
+        </tr>
+      </thead>
+      <% @cart.order_products.each do |entry| %>
+      <tbody>
+        <tr>
+          <td><%= entry.product.name %></td>
+          <td><%= entry.product.price %></td>
+          <td><%= entry.quantity %></td>
+          <td><%=entry.product.price * entry.quantity %></td>
+          <td><%= form_for entry, url: order_product_path(entry.id), method: :patch do |f|  %>
+            <%# f.label :quantity %>
+            <%= f.text_field :quantity %>
+            <%= f.submit "Update Quantity", class:"button"%>
+          <% end %>
+          <%= link_to "Edit Item", edit_order_product_path(entry.id), class:"button" %>
+        </td>
+        <td><%= link_to "Delete Item", order_product_path(entry.id), method: :delete, data: {confirm: "Are you sure you want to remove #{entry.product.name} from cart?"}, class:"button" %></td>
+
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <ul class="totals">
+      <li>Subtotal: $<%= @cart.sub_total %></li>
+      <li>Tax: $<%= @cart.tax_amount %></li>
+      <li>Total: $<%= @cart.taxed_total %></li>
+    </ul>
+
+    <li>
+      <% if session[:user_id] %>
+      <% @user = User.find_by(id: session[:user_id]) %>
+        <%if @user.billing_datum_id %>
+          <!-- USER: <%= @user.username %>
+          Billing Datum ID <%= @user.billing_datum_id %> -->
+          <%= link_to("Proceed to Checkout", edit_billing_datum_path(@user.billing_datum_id), class:'button') %>
+          <% end %>
+      <%elsif @pending_order.billing_datum_id %>
+        <%= link_to("Proceed to checkout", edit_billing_datum_path(@pending_order.billing_datum_id), class:"button")%>
+      <%else%>
+        <%= link_to("Proceed to Checkout", new_billing_datum_path, class:'button')%>
+      <%end %>
+    <%end%>
+    </li>
+
+  </section>
+
+
+<!-- --------------------------------------------------------------- -->
