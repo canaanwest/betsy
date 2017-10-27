@@ -58,7 +58,7 @@
           <th>Order Status</th>
         </tr>
       </thead>
-      <% @user.orders.where(order_status: “paid”).where(order_status: “cancelled”).where(order_status: “shipped”).each do |order| %>
+      <% @user.orders.where(order_status: "paid").where(order_status: "cancelled").where(order_status: "shipped").each do |order| %>
       <tbody>
 
          <% order.order_products.each do |order_product| %>

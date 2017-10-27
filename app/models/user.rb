@@ -56,7 +56,7 @@ class User < ApplicationRecord
   def has_past_orders?
     past_orders = []
     self.orders.each do |order|
-      if order.order_status == “paid” || order.order_status == “shipped” || order.order_status == “cancelled”
+      if order.order_status == "paid" || order.order_status == "shipped" || order.order_status == "canceled"
         past_orders << order
       end
     end
