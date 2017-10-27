@@ -1,37 +1,37 @@
 class ReviewsController < ApplicationController
-  def index
-    @reviews = Review.order(:id)
-  end
+  # def index
+  #   @reviews = Review.order(:id)
+  # end
 
-  def show
-    @review = Review.find_by(id: params[:id].to_i)
-
-    unless @review
-      flash[:error] = "Review not found"
-      redirect_to root_path
-    end
-  end
-
-
-
-  def edit
-    @review = Review.find_by(id: params[:id].to_i)
-    unless @review
-      redirect_to root_path
-    end
-  end
+  # def show
+  #   @review = Review.find_by(id: params[:id].to_i)
+  #
+  #   unless @review
+  #     flash[:error] = "Review not found"
+  #     redirect_to root_path
+  #   end
+  # end
 
 
 
-  def update
-    @review = Review.find_by(id: params[:id].to_i)
+  # def edit
+  #   @review = Review.find_by(id: params[:id].to_i)
+  #   unless @review
+  #     redirect_to root_path
+  #   end
+  # end
 
-    if @review.update_attributes review_params
-        redirect_to root_path
-    else
-      render :edit
-    end
-  end
+
+
+  # def update
+  #   @review = Review.find_by(id: params[:id].to_i)
+  #
+  #   if @review.update_attributes review_params
+  #       redirect_to root_path
+  #   else
+  #     render :edit
+  #   end
+  # end
 
 
 
@@ -60,11 +60,11 @@ class ReviewsController < ApplicationController
 
 
 
-  def destroy
-    @review = Review.find_by(id: params[:id].to_i)
-    @review.destroy
-    redirect_to root_path
-  end
+  # def destroy
+  #   @review = Review.find_by(id: params[:id].to_i)
+  #   @review.destroy
+  #   redirect_to root_path
+  # end
 
 
 
