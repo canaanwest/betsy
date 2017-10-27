@@ -15,7 +15,6 @@ class BillingDataController < ApplicationController
   end
 
   def edit
-    @billing_data = BillingDatum.find_by(id: params[:id].to_i)
     unless @billing_data
       redirect_to root_path
     end
