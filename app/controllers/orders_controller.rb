@@ -20,16 +20,10 @@ class OrdersController < ApplicationController
       @pending_order.save
       session[:pending_order_id] = nil
       find_cart
-
-      # if @user
-      #   Order.where(user_id =).last = "paid"
-      #   @user.save
-      # end
-      #nexT: mark the entire order as paid (currently only items are marked paid)
     else
       flash[:status] = :error
       flash[:result_text] = "There was an error; you could not be checked out at this time"
-      redirect_to cart_path, status: 400
+      redirect_back(fallback_location: cart_path)
     end
   end
 
