@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-
+    @user.save
     if @user.save
       flash[:success] = "User added successfully"
       redirect_to root_path
