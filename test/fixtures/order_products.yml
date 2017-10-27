@@ -11,9 +11,9 @@ two:
   order: four
 
 three:
-  quantity: 3
+  quantity: 2
   product: converse
-  order: paid_order
+  order: two
 
 four:
   quantity: 5
@@ -39,3 +39,19 @@ guest_pencil_paid_order:
   quantity: 100
   product: pencil
   order: guest_paid_order
+
+
+existing_tea_entry:
+  quantity: 1
+  product: sleepytime
+  order: guest_sleepytime_order
+
+entry_without_items:
+  quantity: 1
+  product: out_of_stock
+  order: out_of_stock
+
+guest2_paid_order:
+  quantity: 1
+  product: sleepytime
+  order: guest2_paid_order

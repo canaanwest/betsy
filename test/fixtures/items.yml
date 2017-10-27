@@ -6,6 +6,18 @@ converse_no_order:
   product: converse
   order: one
 
+converse_shipped_one:
+  shipping_status: true
+  purchase_status: false
+  product: converse
+  order: two
+
+converse_shipped_two:
+  shipping_status: true
+  purchase_status: false
+  product: converse
+  order: two
+
 converse_ordered:
   shipping_status: false
   purchase_status: true
@@ -23,3 +35,12 @@ flats_ordered_shipped:
   purchase_status: true
   product: flats
   order: two
+
+tea_1:
+  product: sleepytime
+
+tea_2:
+  product: sleepytime
+
+tea_3:
+  product: sleepytime

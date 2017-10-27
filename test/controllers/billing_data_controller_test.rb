@@ -57,37 +57,39 @@ describe BillingDataController do
   it "!!!should produce an edit form for billing data" do
     #issue connecting user to data
     log_in(users(:carl), :github)
-    get edit_billing_datum_path(billing_data(:carl_billing_datum).id)
+    session[:user_id].must_equal users(:carl).id
+
+    get edit_billing_datum_path(billing_data(:carl_billing_datum))
     must_respond_with :success
   end
 
   it "should update billing information" do
-    # person_data = billing_data(:carl_billing_datum)
-    # user = User.find_by(id: person_data.user_id)
-    # log_in( user, :github)
-    #
-    #
-    # billing_data = {
-    #   billing_datum: {
-    #     email: "test@testdata.com",
-    #     mailing_address: "2200 New Street, Seattle, WA, 09020",
-    #     credit_card_name: "test card",
-    #     credit_card_number: "4332 2321 1213 1241",
-    #     credit_card_cvv: "333",
-    #     billing_zip_code: "09020",
-    #     expiration_date: "121"
-    #   }
-    # }
-
-    # session[:user_id].must_equal User.users(:carl).id
-    #session[:user_id].must_equal BillingDatum.find_by(id: billing_data(:carl_billing_datum)).user_id
-
-    #put billing_datum_path(person_data), params: billing_data
-    #must_respond_with :redirect
+    person_data = billing_data(:carl_billing_datum)
+    user = User.find_by(id: person_data.user_id)
+    log_in( user, :github)
 
 
-    #must_redirect_to billing_info_path(billing_data(:carl_billing_datum))
-    #should redirect to the "show billing info/confirm purchase"
+    billing_data = {
+      billing_datum: {
+        email: "test@testdata.com",
+        mailing_address: "2200 New Street, Seattle, WA, 09020",
+        credit_card_name: "test card",
+        credit_card_number: "4332 2321 1213 1241",
+        credit_card_cvv: "333",
+        billing_zip_code: "09020",
+        expiration_date: "121"
+      }
+    }
+
+    session[:user_id].must_equal User.users(:carl).id
+    session[:user_id].must_equal BillingDatum.find_by(id: billing_data(:carl_billing_datum)).user_id
+
+    put billing_datum_path(person_data), params: billing_data
+    must_respond_with :redirect
+
+
+    must_redirect_to billing_info_path(billing_data(:carl_billing_datum))
+    # should redirect to the "show billing info/confirm purchase"
   end
 
   describe "#SHOW" do
@@ -99,8 +101,14 @@ describe BillingDataController do
     end
 
     it "does not show billing information to anyone not tied to it through a product" do
-      get billing_datum_path(billing_data(:carl_billing_datum))
+      get billing_data_path(billing_data(:carl_billing_datum).id)
       must_respond_with :not_found
+    end
+
+    it "doesn't show billing data that doesn't exist" do
+
+      get billing_datum_path(BillingDatum.last.id+1)
+      must_redirect_to root_path
     end
   end
 end

@@ -3,6 +3,7 @@ require "test_helper"
 describe Product do
   let(:converse) { products(:converse) }
   let(:coffee) { products(:coffee) }
+  
   describe "available_items" do
     it "should give an array" do
       converse.available_items.must_be_instance_of Array

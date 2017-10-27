@@ -1,27 +1,16 @@
 class OrdersController < ApplicationController
+  before_action :permission, except: [:show]
+  before_action :view_order_permission, only: [:view]
+
   def view
     find_order
   end
-  def index
-  end
+
 
   def show
     @cart = @pending_order
   end
 
-  def edit
-  end
-
-  def update
-
-  end
-
-  def new
-  end
-
-  def create
-
-  end
 
   def checkout
     if mark_items_as_purchased
@@ -40,29 +29,25 @@ class OrdersController < ApplicationController
     else
       flash[:status] = :error
       flash[:result_text] = "There was an error; you could not be checked out at this time"
-      redirect_back(fallback_location: cart_path)
+      redirect_to cart_path, status: 400
     end
   end
 
-  def purchase
-  end
 
-  def destroy
-  end
+  # def add_product
+  #   @cart_entry = OrderProduct.new(product_id: params[:id].to_i, order_id: @pending_order.id)
+  #   if @cart_entry.save
+  #     flash[:status] = :success
+  #     flash[:result_text] = "Successfully added to your cart!"
+  #     redirect_to order_path(@pending_order)
+  #     redirect_to product_path(params[:id])
+  #   else
+  #     flash[:result_text] = "Could not add that product to your cart"
+  #     flash[:messages] = @cart_entry.errors
+  #     redirect_to root_path
+  #   end
+  # end
 
-  def add_product
-    @cart_entry = OrderProduct.new(product_id: params[:id].to_i, order_id: @pending_order.id)
-    if @cart_entry.save
-      flash[:status] = :success
-      flash[:result_text] = "Successfully added to your cart!"
-      redirect_to order_path(@pending_order)
-      redirect_to product_path(params[:id])
-    else
-      flash[:result_text] = "Could not add that product to your cart"
-      flash[:messages] = @cart_entry.errors
-      redirect_to root_path
-    end
-  end
 
 
   private
@@ -78,7 +63,7 @@ class OrdersController < ApplicationController
     entries.each do |entry|
       if !(entry.valid?)
         flash[:status] = :error
-        flash[:result_text] = "Check your cart, inventory has changed for #{entry.product}"
+        flash[:result_text] = "Check your cart, inventory has changed"
         flash[:messages] = entry.errors
         return false
       end
@@ -98,7 +83,7 @@ class OrdersController < ApplicationController
       if item.save
         flash[:result_text] = "Items were saved."
       else
-        flash[:status] = :error
+        # flash[:status] = :error
         flash[:result_text] << "Items were not saved.  Please contact web administrator.   "
         flash[:messages] = "There were errors"
         # item.errors
@@ -110,6 +95,29 @@ class OrdersController < ApplicationController
   end
 
   def find_order
-    @order_for_view = Order.find(params[:id])
+    # binding.pry
+    @order_for_view = Order.find(params[:id].to_i)
+    # binding.pry
+  end
+
+
+  def permission
+    unless @user
+      render_404
+    end
+  end
+
+  def view_order_permission
+    @order_for_view = Order.find(params[:id].to_i)
+    if @order_for_view
+      products = @order_for_view.order_products.map {|entry| entry.product}
+      # binding.pry
+      owners_of_products = []
+      products.each {|product| owners_of_products << product.user_id}
+      if !(owners_of_products.include? @user.id)
+        render_404
+        # return
+      end
+    end
   end
 end

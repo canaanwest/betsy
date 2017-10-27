@@ -1,8 +1,9 @@
+require 'simplecov'
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
-require 'simplecov'
 SimpleCov.start
+
 require "minitest/rails"
 # require "minitest/skip_dsl"
 require "minitest/reporters"  # for Colorized output
@@ -13,7 +14,8 @@ Minitest::Reporters.use!(
   ENV,
   Minitest.backtrace_filter
 )
-
+require 'simplecov'
+SimpleCov.start
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:

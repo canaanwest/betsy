@@ -9,6 +9,7 @@ class OrderProduct < ApplicationRecord
   def items_available?
     product = self.product
     quantity = self.quantity
+    return false if !(product.num_available)
     if product.num_available >= quantity
       return true
     else
@@ -73,7 +74,5 @@ class OrderProduct < ApplicationRecord
       return false
     end
   end
-
-
 
 end

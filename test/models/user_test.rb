@@ -7,23 +7,21 @@ describe User do
   describe "merchant_entries" do
     it "should return an array" do
       result = carl.merchant_entries
-
       result.must_be_instance_of Array
     end
+
     it "everything in the array should be an OrderProduct" do
       result = carl.merchant_entries
-      # binding.pry
       result.each do |entry|
         entry.must_be_instance_of OrderProduct
       end
-
     end
 
     it "every order should have product tied to merchant" do
       result = carl.merchant_entries
       # binding.pry
       result.each do |entry|
-        [products(:converse), products(:flats), products(:coffee), products(:pencil)].must_include entry.product
+        [products(:converse), products(:flats), products(:coffee), products(:pencil), products(:lamp)].must_include entry.product
       end
     end
 
@@ -35,12 +33,27 @@ describe User do
       end
       failed_entries.length.must_equal 0
     end
+
+    it "returns false if there are no merchant entries" do
+      result = carl.merchant_entries
+      result.each do |entry|
+        entry.destroy
+      end
+      carl.merchant_entries.must_equal false
+    end
+
   end
+
 
 describe "User Model Validity" do
 
   it "must be valid with username and email" do
     carl.must_be :valid?
+    a = User.new
+    a.username = "Annie"
+    a.email = "AnnieHall@yahoo.com"
+    a.save.must_equal true
+    a.must_be :valid?
   end
 
   it "Should return invalid without a username" do
@@ -55,12 +68,12 @@ describe "User Model Validity" do
     carl.valid?.must_equal false
   end
 
-  it "Should  allow two users to have the same email" do
+  it "Should not allow two users to have the same email" do
     carl.valid?.must_equal true
     new_user = User.new(username: "Mr Magoo", email: "carl@carlcarle.me")
 
     carl.valid?.must_equal true
-    new_user.valid?.must_equal true
+    new_user.valid?.must_equal false
   end
 
   it "Username must be unique" do
@@ -69,6 +82,10 @@ describe "User Model Validity" do
 
     carl.valid?.must_equal true
     new_user.valid?.must_equal false
+
+  end
+
+  it "Can be associated with billing data" do
 
   end
 end
@@ -86,14 +103,18 @@ describe "find_pending_order" do
   end
 
   it "if a user has multiple pending orders, it should return one pending order" do
-
+    result = users(:carl).find_pending_order
+    result.must_be_instance_of Order
   end
 
-  it "if a user has multiple pending orders, it should return a combination of the two orders" do
-
-  end
-
-  it "if a user has multiple pending orders, it should combine them and delete the other ones?" do
+  # it "if a user has multiple pending orders, it should return a combination of the two orders" do
+  #
+  # end
+  #
+  # it "if a user has multiple pending orders, it should combine them and delete the other ones?" do
+  #
+  # end
+  describe "show_available" do
 
   end
 
