@@ -48,7 +48,7 @@ class User < ApplicationRecord
   # end
 
   #TODO- Question from Julia- This method is shown in two places: here and in the application model. I think we can remove it here.
-  # def show_available
-  #   Product.where(visibility: true)
-  # end
+  def show_available
+    Product.where(visibility: true)
+   end
 end
