@@ -30,3 +30,9 @@ chocolate:
   price: 200
   description: it's good
   user: sophie_no_pending_order
+
+lamp:
+  name: lamp
+  price: 300
+  description: let there be light
+  user: carl

@@ -6,6 +6,18 @@ converse_no_order:
   product: converse
   order: one
 
+converse_shipped_one:
+  shipping_status: true
+  purchase_status: false
+  product: converse
+  order: two
+
+converse_shipped_two:
+  shipping_status: true
+  purchase_status: false
+  product: converse
+  order: two
+
 converse_ordered:
   shipping_status: false
   purchase_status: true
@@ -23,3 +35,33 @@ flats_ordered_shipped:
   purchase_status: true
   product: flats
   order: two
+
+unshipped_item_one:
+  shipping_status: false
+  purchase_status: true
+  product: lamp
+  order: unshipped_paid_order
+
+unshipped_product_one:
+  shipping_status: false
+  purchase_status: true
+  product: lamp
+  order: unshipped_paid_order
+
+unpurchased_lamp_one:
+  shipping_status: false
+  purchase_status: false
+  product: lamp
+  order: unshipped_paid_order
+
+unpurchased_lamp_two:
+  shipping_status: false
+  purchase_status: false
+  product: lamp
+  order: unshipped_paid_order
+
+unpurchased_pencil:
+  shipping_status: false
+  purchase_status: false
+  product: pencil
+  order: unshipped_paid_order

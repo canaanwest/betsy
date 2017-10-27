@@ -20,6 +20,7 @@ mia_billing_datum:
   expiration_date: 1111
   user_id: mia
 
+
 guest_billing_datum:
   email: star@lightbright.com
   mailing_address: 2929 StarLight Street, Tacoma, Washington 02020

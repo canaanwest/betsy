@@ -21,7 +21,7 @@ describe User do
       result = carl.merchant_entries
       # binding.pry
       result.each do |entry|
-        [products(:converse), products(:flats), products(:coffee), products(:pencil)].must_include entry.product
+        [products(:converse), products(:flats), products(:coffee), products(:pencil), products(:lamp)].must_include entry.product
       end
     end
 

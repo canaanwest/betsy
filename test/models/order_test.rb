@@ -60,6 +60,8 @@ describe Order do
     end
   end
 
+
+
   describe "validations" do
     it "must have session_id" do
       order.session_id.must_be :==, nil
@@ -87,6 +89,7 @@ describe Order do
 
     end
 
+
     it "new orders should have order_status of pending" do
       order.order_status.must_equal "pending"
       another_order = Order.new
@@ -113,4 +116,49 @@ describe Order do
     end
 
   end
+
+  describe "model methods" do
+    describe "sub_total, tax_amount and taxed_total methods" do
+      it "returns a number value" do
+        orders(:unshipped_paid_order).sub_total.must_be_instance_of BigDecimal
+        orders(:unshipped_paid_order).taxed_total.must_be_instance_of BigDecimal
+      end
+
+      it "correctly calculates the cost of all items in an order" do
+        #order_products: shipped_lamp and shipped pencil
+        orders(:unshipped_paid_order).sub_total.must_equal 605
+      end
+
+      it "correctly calculates the cost of all items in an order WITH TAX!" do
+        #order_products: shipped_lamp and shipped pencil
+        orders(:unshipped_paid_order).taxed_total.must_equal 658.6635
+      end
+    end
+
+    describe "has_invalid_entries?" do
+      it "returns false if it has only valid entries (i.e. order_products) and true if has invalid entries" do
+        order = orders(:unshipped_paid_order)
+        order.has_invalid_entries?.must_equal false
+        # binding.pry
+        items = order.order_products.first.product.items
+        items.first.shipping_status = "true"
+        order.has_invalid_entries?.must_equal true
+      end
+    end
+
+    describe "check_for_duplicates" do
+      it "returns a order_product object if there is an entry in the cart with the same user_id. otherwise it returns false" do
+        orders(:one).check_for_duplicates(products(:converse).id).must_be_instance_of OrderProduct
+        pencil_order = orders(:guest_pending_order)
+        result = pencil_order.check_for_duplicates(products(:converse).id)
+        result.must_equal false
+      end
+
+
+    end
+
+  end
+
+
+
 end
