@@ -38,7 +38,11 @@
       Credit Card Expiration Date:
     </th>
     <td>
-      lol woops
+      <%if @order_for_view.billing_datum.expiration_date != nil%>
+        <%= @order_for_view.billing_datum.expiration_date %>
+      <% else %>
+        this billing info was created before expiration date was collected
+      <% end %>
     </td>
   </tr>
 </table>
