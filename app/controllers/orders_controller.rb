@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :permission, except: [:show]
+  before_action :permission, except: [:show, :checkout]
   before_action :view_order_permission, only: [:view]
 
   def view

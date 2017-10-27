@@ -1,5 +1,4 @@
 
-
 <section>
   <% if @cart.order_products.length == 0 %>
   <%= "Get to shopping! Your cart is empty!" %>
@@ -25,9 +24,9 @@
       <tbody>
         <tr>
           <td><%= entry.product.name %></td>
-          <td><%= entry.product.price %></td>
+          <td><%= readable_money(entry.product.price.round(2)) %></td>
           <td><%= entry.quantity %></td>
-          <td><%=entry.product.price * entry.quantity %></td>
+          <td><%=readable_money(entry.subtotal.round(2)) %></td>
           <td><%= form_for entry, url: order_product_path(entry.id), method: :patch do |f|  %>
             <%# f.label :quantity %>
             <%= f.text_field :quantity %>
@@ -42,9 +41,9 @@
     </table>
 
     <ul class="totals">
-      <li>Subtotal: $<%= @cart.sub_total %></li>
-      <li>Tax: $<%= @cart.tax_amount %></li>
-      <li>Total: $<%= @cart.taxed_total %></li>
+      <li>Subtotal: <%= readable_money(@cart.sub_total.round(2)) %></li>
+      <li>Tax: <%= readable_money(@cart.tax_amount.round(2)) %></li>
+      <li>Total: <%= readable_money(@cart.taxed_total.round(2)) %></li>
     </ul>
 
     <li>

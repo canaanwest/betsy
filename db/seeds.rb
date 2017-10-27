@@ -128,7 +128,8 @@ CSV.foreach(BILLING_DATA_FILE, :headers => true) do |row|
   billing_datum.credit_card_cvv = row['credit_card_cvv']
   billing_datum.billing_zip_code = row['billing_zip_code']
   billing_datum.user_id = row['user_id']
-
+  billing_datum.expiration_date = row['expiration_date']
+  
   puts "Created billing_datum: #{billing_datum.inspect}"
   successful = billing_datum.save
   if !successful
