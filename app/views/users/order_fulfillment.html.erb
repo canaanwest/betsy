@@ -83,7 +83,6 @@
     <% @paid_entries.each do |entry| %>
     <tr>
       <td>
-        <%= entry.order.id %>
         <%= link_to entry.order.id, view_order_path(entry.order.id) %>
       </td>
       <td>
