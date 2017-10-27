@@ -21,7 +21,12 @@ class ItemsController < ApplicationController
   end
 
   def create
+    # if !(Product.find_by(id: params[:id]))
+    #   render_404
+    #   return
+    # end
     @item = Item.new(product_id: params[:id])
+    # binding.pry
 
     if @item.save
       # puts "success"
@@ -30,8 +35,8 @@ class ItemsController < ApplicationController
     else
       # puts "fail"
       # puts @item.errors.messages
-      flash.now[:error] = "Item not added to #{Product.find(params[:id])}"
-      render :new
+      flash.now[:error] = "Item not added to Product # #{params[:id]}"
+      redirect_to profile_path, status: 400
     end
   end
 
@@ -46,13 +51,14 @@ class ItemsController < ApplicationController
 
     else
       flash[:result_text] = "There are no more items to remove"
-      redirect_back(fallback_location: root_path)
+      redirect_to profile_path, status: 400
     end
   end
 
   private
-  def item_params
-    return params.require(:items).permit(:shipping_status, :purchase_status, :product_id, :order_id)
-  end
+  # GM: This never gets called in this controller
+  # def item_params
+  #   return params.require(:items).permit(:shipping_status, :purchase_status, :product_id, :order_id)
+  # end
 
 end
