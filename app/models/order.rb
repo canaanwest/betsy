@@ -54,7 +54,8 @@ class Order < ApplicationRecord
     end
     if invalid_entries.first != nil
       self.errors[:entries] << "are invalid."
-      invalid_entries.each {|entry| self.errors[:entries] << entries.errors}
+      #TODO: Julia took out below line. Does not seem needed. Also, sytnax is incorrect- does not use variable entry in ternary.
+      invalid_entries.each do |entry| {|entry| self.errors[:entries] << entry.errors}
       return true #is NOT a valid order
     else
       return false #is a valid order
@@ -66,6 +67,8 @@ class Order < ApplicationRecord
     return entries_by_product
   end
 
+  #used in the controller method add_to_order.
+  #If there is already a productorder in the cart that has the same product_id, this method will return the product_order object. If there is no duplicate, it will return false.
   def check_for_duplicates(input_product_id)
     entries = self.entries_by_product
     if entries[input_product_id]
@@ -76,15 +79,17 @@ class Order < ApplicationRecord
   end
 
   #gets called if check_for_duplicates returns true
-  def combine_entries(entry_id)
-    entries = self.entries_by_product
-    product = entry.product
-  end
+  #TODO: Julia removed below method. Does not appear to be applied in any part of the project.
+  # def combine_entries(entry_id)
+  #   entries = self.entries_by_product
+  #   product = entry.product
+  # end
 
-  def has_valid_order_products
-    entries = self.order_products
-    entries.each { |entry| return false if !(entry.valid?)}
-    return true
-  end
+  #TODO: Julia removed below method. Does not appear to be applied in any part of the project. Also repeats the logic of the above has_invalid_entries? method above
+  # def has_valid_order_products
+  #   entries = self.order_products
+  #   entries.each { |entry| return false if !(entry.valid?)}
+  #   return true
+  # end
 
 end

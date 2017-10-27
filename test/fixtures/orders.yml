@@ -33,7 +33,7 @@ pending_order:
 paid_order:
   order_status: paid
   user: mia
-  billing_datum: two
+  billing_datum: mia_billing_datum
   session_id: orderpaid_order
 
 shipped_order:
@@ -65,3 +65,9 @@ guest_paid_order:
   user_id:
   billing_datum: guest_billing_datum
   session_id: guest_paid_order
+
+unshipped_paid_order:
+  order_status: paid
+  user_id: carl
+  billing_datum: carl_billing_datum
+  session_id: orderunshipped_paid_order
