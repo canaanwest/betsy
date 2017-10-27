@@ -33,6 +33,7 @@ nav {
   height: 200px;
   font-size: 1em;
   letter-spacing: 0.1em;
+
 }
 
 nav ul,
@@ -149,7 +150,11 @@ input[type="checkbox"]:checked ~ #menu {
 .background {
   width: 100%;
   height: calc(100vh - 200px);
-  background-image: url("/assets/purple.jpg");
+  // original background (revert back if deply to heroku doesnt work)
+  // background-image: url("/assets/purple.jpg");
+
+  background-image: image-url('purple.jpg');
+
   background-repeat: no-repeat;
 }
 
