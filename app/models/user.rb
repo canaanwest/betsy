@@ -20,6 +20,81 @@ class User < ApplicationRecord
     return false
   end
 
+  def paid_entries
+    entries = self.merchant_entries
+    paid_entries = []
+    return false if !(entries)
+    entries.each do |entry|
+      paid_entries << entry if entry.paid?
+    end
+    return paid_entries if paid_entries.first != nil
+    return false
+  end
+
+  def shipped_entries
+    entries = self.merchant_entries
+    shipped_entries = []
+    return false if !(entries)
+    entries.each do |entry|
+      shipped_entries << entry if entry.shipped?
+    end
+    return shipped_entries if shipped_entries.first != nil
+    return false
+  end
+
+  def canceled_entries
+    entries = self.merchant_entries
+    canceled_entries = []
+    return false if !(entries)
+    entries.each do |entry|
+      canceled_entries << entry if entry.canceled?
+    end
+    return canceled_entries if canceled_entries.first != nil
+    return false
+  end
+
+  def canceled_revenue
+    entries = canceled_entries
+    subtotal = 0
+    if entries
+      entries.each do |entry|
+        subtotal += entry.subtotal
+      end
+    end
+    return subtotal
+  end
+
+  def shipped_revenue
+    entries = shipped_entries
+    subtotal = 0
+    if entries
+      entries.each do |entry|
+        subtotal += entry.subtotal
+      end
+    end
+    return subtotal
+  end
+
+
+  def paid_revenue
+    entries = paid_entries
+    subtotal = 0
+    if entries
+      entries.each do |entry|
+        subtotal += entry.subtotal
+      end
+    end
+    return subtotal
+  end
+
+  def total_revenue
+    subtotal = 0
+    paid_amount = paid_revenue
+    shipped_amount = shipped_revenue
+    subtotal = paid_amount + shipped_amount
+    return subtotal
+  end
+
   def find_pending_order #synonymous to cart
     pending_orders = []
     self.orders.each do |order|

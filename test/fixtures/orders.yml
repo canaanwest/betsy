@@ -66,8 +66,13 @@ guest_paid_order:
   billing_datum: guest_billing_datum
   session_id: guest_paid_order
 
-unshipped_paid_order:
+guest_sleepytime_order:
+  session_id: "it's sleepy"
+
+out_of_stock:
+  session_id: "out of stock order no items"
+
+guest2_paid_order:
   order_status: paid
-  user_id: carl
-  billing_datum: carl_billing_datum
-  session_id: orderunshipped_paid_order
+  billing_datum: guest_billing_datum
+  session_id: guest2_paid_order

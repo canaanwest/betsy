@@ -14,3 +14,8 @@ sophie_no_pending_order:
   username: s0phie
   email: sophie@sophie.net
   uid: 300
+
+no_access:
+  username: who
+  email: email
+  uid: 400

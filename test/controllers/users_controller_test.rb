@@ -16,6 +16,15 @@ describe UsersController do
 
       must_respond_with :not_found
     end
+    #GM how to test instance variables )-':
+    it "should populate with entries with user has sold products" do
+      user = users(:sophie_no_pending_order)
+      log_in(user, :github)
+
+      get order_fulfillment_path
+
+      must_respond_with :success
+    end
   end
   describe "INDEX" do
     it "should get index" do
@@ -42,26 +51,41 @@ describe UsersController do
       end
   end
 
-  it "should successfully create a new user" do
-    #GM: Should users be successfully created through user controller?
-    #Or should this be limited to sessions#login?
-    proc  {
-      post users_path, params: {users: {username: "Test", email: "test@test.com"}}}.must_change 'User.count', 1
-
-      must_respond_with :redirect
-      must_redirect_to root_path
+  describe "profile" do
+    it "auth users should successfully get profile_path" do
+      user = users(:mia)
+      log_in(user, :github)
+      get profile_path
+      must_respond_with :success
+    end
+    it "should respond with 404 for guests" do
+      get profile_path
+      must_respond_with :not_found
+    end
   end
 
-  it "should be able to update a user" do
-    log_in(users(:carl), :github)
-    put user_path(users(:carl)), params: {user: {username: "Karl"} }
-    user = User.find(users(:carl).id)
-    user.username = "Karl"
-    user.username.must_equal "Karl"
 
-    must_respond_with :redirect
-    must_redirect_to root_path
-  end
+  # it "should successfully create a new user" do
+  #   #GM: Should users be successfully created through user controller?
+  #   #Or should this be limited to sessions#login?
+  #   proc  {
+  #     post users_path, params: {users: {username: "Test", email: "test@test.com"}}}.must_change 'User.count', 1
+  #
+  #     must_respond_with :redirect
+  #     must_redirect_to root_path
+  # end
+  #
+  # it "should be able to update a user" do
+  #   log_in(users(:carl), :github)
+  #   put user_path(users(:carl)), params: {user: {username: "Karl"} }
+  #   user = User.find(users(:carl).id)
+  #   user.username = "Karl"
+  #   user.username.must_equal "Karl"
+  #
+  #   must_respond_with :redirect
+  #   must_redirect_to root_path
+  # end
+
 
 
   # it "Should be able to delete a user" do

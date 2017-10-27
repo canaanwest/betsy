@@ -41,6 +41,7 @@ describe ApplicationController do
     log_in(user, :github)
     get root_path
     session[:user_id].must_equal user.id
-    (Order.find_by(session[:pending_order_id])).session_id.must_equal guest_session_id
+    # binding.pry
+    (Order.find(session[:pending_order_id])).session_id.must_equal guest_session_id
   end
 end

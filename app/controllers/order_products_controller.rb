@@ -13,15 +13,16 @@ class OrderProductsController < ApplicationController
 
   end
 
-  def create
-    @cart_entry = OrderProduct.new(product_id: params[:id], order_id: @pending_order)
-    if @cart_entry.save
-      flash[:status] = :success
-      flash[:result_text] = "Successfully added this to your cart!"
-      redirect_to order_path(@pending_order)
-      # redirect_to product_path(params[:id])
-    end
-  end
+  # def create
+  #   @cart_entry = OrderProduct.new(product_id: params[:id], order_id: @pending_order)
+  #
+  #   if @cart_entry.save
+  #     flash[:status] = :success
+  #     flash[:result_text] = "Successfully added this to your cart!"
+  #     redirect_to order_path(@pending_order)
+  #     # redirect_to product_path(params[:id])
+  #   end
+  # end
 
   def update
     sent_params = params
@@ -35,7 +36,7 @@ class OrderProductsController < ApplicationController
     if sent_quantity == 0
       flash[:result_text] = "Could not update #{@entry.product.name}.  Make sure you are entering a number greater than 0.  If you wanted to delete it, click delete from cart."
       flash[:status] = :error
-      redirect_to cart_path
+      redirect_to cart_path, status: 400
       return
     end
     @entry.quantity = sent_quantity
@@ -61,7 +62,7 @@ class OrderProductsController < ApplicationController
     deleted_entry = "#{@entry.product.name}"
     if @entry.destroy
       flash[:success] = "Successfully deleted #{deleted_entry}."
-      redirect_to order_path(@pending_order.id)
+      redirect_to cart_path
     else
 
     end
@@ -90,6 +91,7 @@ class OrderProductsController < ApplicationController
         item.save
       end
       flash[:status] = :success
+
       flash[:result_text] = "Successfully shipped entry #{@entry.id}!"
       redirect_to order_fulfillment_path
 
